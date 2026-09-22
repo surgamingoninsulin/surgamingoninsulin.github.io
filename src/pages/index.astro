@@ -1,0 +1,84 @@
+---
+// Home page modelled on smithed.net: statement hero -> lists of projects -> feature tiles -> banner.
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getAllProjects } from '../data/projects';
+import { site, typeList, url } from '../data/site';
+
+const all = await getAllProjects();
+const featured = all.filter((p) => p.data.featured || p.data.features).slice(0, 6);
+// Repeat the featured list until one group is wider than a large screen (~6 cards), so there is never a gap.
+// Featured slideshow (see .marquee in global.css): full width, right to left, pauses on hover.
+const slides = featured.length
+  ? Array.from({ length: Math.ceil(6 / featured.length) }, () => featured).flat()
+  : [];
+const counts = Object.fromEntries(typeList.map((t) => [t.key, all.filter((p) => p.types.includes(t.key)).length]));
+---
+<Base>
+  <section class="hero">
+    <div class="container hero-inner">
+      <img class="hero-logo" src={url('pixelith-icon-512.png')} alt="" width="84" height="84" />
+      <h1>{site.name} is the home for <span>the projects I build and share.</span></h1>
+      <p>Explore games, tools, experiments and creative projects — all made to be useful, enjoyable and easy to try.</p>
+    </div>
+  </section>
+
+  <section class="featured-section">
+    {featured.length === 0 ? (
+      <div class="container"><div class="card empty">Mark a project with <code>featured: true</code> to show it here.</div></div>
+    ) : (
+      <div class="marquee" style={`--duration:${Math.max(20, slides.length * 6)}s`}>
+        <div class="marquee-track">
+          <div class="marquee-group">
+            {slides.map((p) => <ProjectCard project={p} showType />)}
+          </div>
+          {/* Visual-only copy for the seamless loop: `inert` would also block mouse clicks
+              whenever this copy is the one currently scrolled into view, so it's excluded from
+              screen readers and the tab order per-card instead (see `duplicate` in ProjectCard). */}
+          <div class="marquee-group">
+            {slides.map((p) => <ProjectCard project={p} showType duplicate />)}
+          </div>
+        </div>
+      </div>
+    )}
+  </section>
+
+  <script>
+    // Browser back/forward can restore focus to the card that opened the detail page.
+    // That focus intentionally pauses the marquee, so clear only the restored focus.
+    window.addEventListener('pageshow', () => {
+      requestAnimationFrame(() => {
+        const active = document.activeElement;
+        if (active instanceof HTMLElement && active.closest('.marquee')) active.blur();
+      });
+    });
+  </script>
+
+  <section class="section" style="margin-top:4rem">
+    <div class="container">
+      <h2>Explore by type</h2>
+      <div class="tiles">
+        {typeList.map((t) => (
+          <a class="card tile" href={url(`${t.key}/`)}>
+            <h3>{t.label}</h3>
+            <p>{t.description}</p>
+            <span class="chip accent">{counts[t.key]} project{counts[t.key] === 1 ? '' : 's'}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="banner">
+        <img src={url('avatar.png')} alt="" width="88" height="88" />
+        <div>
+          <h2 style="margin:0 0 .3rem">Made by SurGamingOnInsulin</h2>
+          <p style="margin:0;color:var(--muted)">Everything here is built and maintained by one person. Read more, or follow along on GitHub.</p>
+        </div>
+        <a class="btn primary" href={url('about/')}>About me</a>
+      </div>
+    </div>
+  </section>
+</Base>

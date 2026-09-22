@@ -1,0 +1,45 @@
+---
+import { url, types } from '../data/site';
+import { latestVersion, type Project } from '../data/projects';
+interface Props { project: Project; showType?: boolean; duplicate?: boolean }
+const { project, showType = false, duplicate = false } = Astro.props;
+const { data, type, slug } = project;
+const latest = latestVersion(data);
+const mc = [...new Set(data.versions.flatMap((v: any) => v.mc))] as string[];
+const icon = project.icon ? url(project.icon) : url('default-icon.svg');
+const combo = project.types.length > 1;
+const comboLabel = project.type === 'projects' ? 'Project' : project.types.map((t) => t === 'projects' ? 'Project' : types[t].singular).join(' + ');
+const href = project.type === 'projects' ? `other-projects/${slug}/` : `${type}/${slug}/`;
+---
+<a
+  class="card"
+  href={url(href)}
+  tabindex={duplicate ? -1 : undefined}
+  aria-hidden={duplicate ? 'true' : undefined}
+  data-title={data.title.toLowerCase()}
+  data-summary={data.summary.toLowerCase()}
+  data-type={project.types.join('|')}
+  data-cats={data.categories.join('|')}
+  data-res={data.resolution ?? ''}
+  data-loaders={data.loaders.join('|')}
+  data-mc={mc.join('|')}
+  data-date={+latest.date}
+>
+  <div class="pack-head">
+    <div class="icon-wrap">
+      <img class="pack-icon" src={icon} alt="" loading="lazy" />
+    </div>
+    <div>
+      <h3 class="pack-title">{data.title}</h3>
+      <div class="pack-by">by {data.author}{showType && ` · ${comboLabel}`}</div>
+    </div>
+  </div>
+  <p class="pack-summary">{data.summary}</p>
+  <div class="tags">
+    {combo && <span class="chip warn">⚠ All-in-one</span>}
+    {data.resolution && <span class="chip accent">{data.resolution}</span>}
+    {data.loaders.map((l: string) => <span class="chip accent">{l}</span>)}
+    {data.categories.map((c: string) => <span class="chip">{c}</span>)}
+    {mc.length > 0 && <span class="chip">{mc[0]}{mc.length > 1 ? ` +${mc.length - 1}` : ''}</span>}
+  </div>
+</a>

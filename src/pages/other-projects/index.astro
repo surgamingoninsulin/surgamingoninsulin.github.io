@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getProjectTools } from '../../data/projects';
+import { url } from '../../data/site';
+import Icon from '../../components/Icon.astro';
+
+const projects = await getProjectTools();
+const rails = [
+  { id: 'featured-tools', title: 'Featured tools', description: 'Projects I am actively shaping next.', cards: projects.filter((p) => p.data.featured || p.data.features) },
+  { id: 'all-projects', title: 'All projects', description: 'Games, tools and experiments in this collection.', cards: projects },
+];
+---
+
+<Base title="Projects" description="Browse tools, games and experiments by SurGamingOnInsulin.">
+  <section class="browse-hero"><div class="container"><span class="chip accent">Project shelf</span><h1>Projects</h1><p>Browse games, tools and experiments in horizontal shelves. Each row uses the Markdown files stored with its project icon.</p></div></section>
+  <main class="container other-projects-page">
+    {rails.filter((rail) => rail.cards.length > 0).map((rail) => (
+      <section class="rail-section" aria-labelledby={`${rail.id}-title`}>
+        <div class="rail-heading"><div><h2 id={`${rail.id}-title`}>{rail.title}</h2><p>{rail.description}</p></div></div>
+        <div class="rail-wrap">
+          <button class="rail-arrow rail-arrow-prev" type="button" data-rail={rail.id} data-direction="-1" aria-label={`Scroll ${rail.title} left`} hidden><Icon name="arrow-left" size={28} /></button>
+          <div class="rail" id={rail.id} tabindex="0">
+            {rail.cards.map((card) => (
+              <a class:list={['project-tile', card.data.categories.includes('Music') ? 'green' : '']} href={url(`other-projects/${card.slug}/`)}>
+                <img class="project-tile-image" src={url(card.icon || 'project-placeholder.svg')} alt={`${card.data.title} preview`} width="320" height="180" loading="lazy" />
+                <div class="project-tile-body"><h3>{card.data.title}</h3><p>{card.data.summary}</p></div>
+                <div class="tile-footer"><span class="chip">Version {card.data.versions[0].version}</span><span class="tile-arrow"><Icon name="arrow-right" size={20} /></span></div>
+              </a>
+            ))}
+          </div>
+          <button class="rail-arrow rail-arrow-next" type="button" data-rail={rail.id} data-direction="1" aria-label={`Scroll ${rail.title} right`}><Icon name="arrow-right" size={28} /></button>
+        </div>
+      </section>
+    ))}
+  </main>
+  <script>
+    const updateRailButtons = (rail) => { const wrap = rail.closest('.rail-wrap'); if (!wrap) return; const previous = wrap.querySelector('.rail-arrow-prev'); const next = wrap.querySelector('.rail-arrow-next'); if (previous) previous.hidden = rail.scrollLeft <= 2; if (next) next.hidden = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2; };
+    document.querySelectorAll('.rail').forEach((rail) => { updateRailButtons(rail); rail.addEventListener('scroll', () => updateRailButtons(rail), { passive: true }); new ResizeObserver(() => updateRailButtons(rail)).observe(rail); });
+    document.querySelectorAll('.rail-arrow').forEach((button) => button.addEventListener('click', () => { const rail = document.getElementById(button.dataset.rail ?? ''); if (!rail) return; const card = rail.querySelector('.project-tile'); rail.scrollBy({ left: (card ? card.getBoundingClientRect().width + 16 : rail.clientWidth) * Number(button.dataset.direction ?? 1), behavior: 'smooth' }); }));
+  </script>
+</Base>
