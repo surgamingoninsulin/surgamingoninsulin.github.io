@@ -15,6 +15,9 @@ const OUT = join(process.cwd(), 'public', 'mobs');
  * default). sound: Java sound event(s) to try. javaTexture: Java texture to use
  * when the Bedrock one is not a PNG.
  */
+// Left out for now: their resting pose comes from Bedrock animation files, which
+// the loader does not read yet, so they look wrong: polar bear, panda, sniffer,
+// turtle, parrot, armadillo, frog, spider, cave spider, cat, ocelot, blaze, endermite, breeze.
 const MOBS = [
   { id: 'pig', name: 'Pig', drop: 'porkchop', react: 'run' },
   { id: 'cow', name: 'Cow', drop: 'leather' },
@@ -23,20 +26,11 @@ const MOBS = [
   { id: 'rabbit', name: 'Rabbit', drop: 'rabbit_hide', react: 'run' },
   { id: 'fox', name: 'Fox', drop: 'sweet_berries', react: 'run' },
   { id: 'wolf', name: 'Wolf', drop: 'bone', sound: ['entity.wolf.ambient', 'entity.wolf.pant'] },
-  { id: 'cat', name: 'Cat', drop: 'string' },
-  { id: 'ocelot', name: 'Ocelot', drop: 'cod', react: 'run' },
-  { id: 'panda', name: 'Panda', drop: 'bamboo' },
-  { id: 'polar_bear', name: 'Polar Bear', drop: 'salmon' },
   { id: 'goat', name: 'Goat', drop: 'milk_bucket' },
   { id: 'llama', name: 'Llama', drop: 'leather' },
   { id: 'camel', name: 'Camel', drop: 'cactus' },
-  { id: 'armadillo', name: 'Armadillo', drop: 'armadillo_scute', react: 'run' },
-  { id: 'sniffer', name: 'Sniffer', drop: 'torchflower_seeds' },
   { id: 'bee', name: 'Bee', drop: 'honeycomb' },
   { id: 'axolotl', name: 'Axolotl', drop: 'tropical_fish_bucket' },
-  { id: 'frog', name: 'Frog', drop: 'slime_ball' },
-  { id: 'turtle', name: 'Turtle', drop: 'turtle_scute', sound: ['entity.turtle.ambient_land'] },
-  { id: 'parrot', name: 'Parrot', drop: 'feather' },
   { id: 'allay', name: 'Allay', drop: 'amethyst_shard' },
   { id: 'iron_golem', name: 'Iron Golem', drop: 'iron_ingot', sound: ['entity.iron_golem.hurt'] },
   { id: 'snow_golem', name: 'Snow Golem', drop: 'snowball' },
@@ -48,13 +42,10 @@ const MOBS = [
   { id: 'skeleton', name: 'Skeleton', drop: 'bone', react: 'arrow' },
   { id: 'stray', name: 'Stray', drop: 'arrow', react: 'arrow' },
   { id: 'creeper', name: 'Creeper', drop: 'gunpowder', react: 'explode', sound: ['entity.creeper.primed'] },
-  { id: 'spider', name: 'Spider', drop: 'string' },
-  { id: 'cave_spider', name: 'Cave Spider', drop: 'spider_eye', sound: ['entity.spider.ambient'] },
   { id: 'enderman', name: 'Enderman', drop: 'ender_pearl', react: 'teleport' },
   { id: 'witch', name: 'Witch', drop: 'glass_bottle' },
   { id: 'slime', name: 'Slime', drop: 'slime_ball', sound: ['entity.slime.squish'] },
   { id: 'magma_cube', name: 'Magma Cube', drop: 'magma_cream', javaTexture: 'entity/slime/magmacube', sound: ['entity.magma_cube.squish'] },
-  { id: 'blaze', name: 'Blaze', javaTexture: 'entity/blaze/blaze', drop: 'blaze_rod' },
   { id: 'piglin', name: 'Piglin', drop: 'gold_ingot' },
   { id: 'zombified_piglin', entity: 'zombie_pigman', name: 'Zombified Piglin', drop: 'gold_nugget', sound: ['entity.zombified_piglin.ambient'] },
   { id: 'hoglin', name: 'Hoglin', drop: 'porkchop' },
@@ -71,9 +62,7 @@ const MOBS = [
   { id: 'salmon', name: 'Salmon', drop: 'salmon', sound: ['entity.salmon.flop'] },
   { id: 'pufferfish', name: 'Pufferfish', drop: 'pufferfish', sound: ['entity.puffer_fish.blow_up'] },
   { id: 'shulker', name: 'Shulker', drop: 'shulker_shell' },
-  { id: 'endermite', name: 'Endermite', drop: 'ender_pearl' },
   { id: 'silverfish', name: 'Silverfish', drop: 'stone' },
-  { id: 'breeze', name: 'Breeze', drop: 'breeze_rod' },
   { id: 'bogged', name: 'Bogged', drop: 'bone', react: 'arrow' },
   { id: 'warden', name: 'Warden', drop: 'sculk_catalyst', sound: ['entity.warden.ambient'] },
 ];

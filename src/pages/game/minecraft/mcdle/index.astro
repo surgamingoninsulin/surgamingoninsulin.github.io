@@ -1,0 +1,72 @@
+---
+import SgoiLayout from '../../../../layouts/SgoiLayout.astro';
+import McBrand from '../../../../components/McBrand.astro';
+import { t } from '../../../../i18n/server';
+---
+
+<SgoiLayout titleKey="mc.mcdle.pageTitle" descriptionKey="mc.mcdle.metaDescription" active="mc-mcdle" texts={['mc']}>
+  <McBrand slot="brand" tool="mc-mcdle" keys="mc.mcdle" />
+
+  <section class="py-4 text-center" data-reveal>
+    <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl" data-i18n="mc.mcdle.title">{t('mc.mcdle.title')}</h1>
+    <p class="mt-2 text-lg opacity-70" data-i18n="mc.mcdle.tagline">{t('mc.mcdle.tagline')}</p>
+  </section>
+
+  <section class="mx-auto w-full max-w-4xl space-y-4" data-reveal>
+    <div class="flex flex-wrap items-center justify-center gap-2">
+      <div class="join">
+        <button id="mode-daily" type="button" class="btn btn-sm join-item btn-active" data-i18n="mc.mcdle.daily">{t('mc.mcdle.daily')}</button>
+        <button id="mode-practice" type="button" class="btn btn-sm join-item" data-i18n="mc.mcdle.practice">{t('mc.mcdle.practice')}</button>
+      </div>
+      <span id="tries" class="badge badge-lg badge-ghost"></span>
+      <button id="hint" type="button" class="btn btn-sm btn-ghost" disabled data-i18n="mc.mcdle.hint">{t('mc.mcdle.hint')}</button>
+    </div>
+
+    <div class="relative mx-auto max-w-xl">
+      <label class="input w-full">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" class="opacity-60"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+        <input id="guess" type="text" class="grow" autocomplete="off" spellcheck="false" placeholder={t('mc.mcdle.placeholder')} data-i18n-attr="placeholder:mc.mcdle.placeholder" disabled />
+      </label>
+      <ul id="suggest" class="menu bg-base-200 rounded-box absolute inset-x-0 top-full z-10 mt-1 max-h-80 flex-nowrap overflow-y-auto shadow-xl" hidden></ul>
+    </div>
+    <p id="hint-text" class="text-center text-sm opacity-80" hidden></p>
+
+    <div class="frost rounded-box overflow-x-auto">
+      <table class="table table-sm text-center">
+        <thead>
+          <tr>
+            <th data-i18n="mc.mcdle.col.item">{t('mc.mcdle.col.item')}</th>
+            <th data-i18n="mc.mcdle.col.type">{t('mc.mcdle.col.type')}</th>
+            <th data-i18n="mc.mcdle.col.category">{t('mc.mcdle.col.category')}</th>
+            <th data-i18n="mc.mcdle.col.stack">{t('mc.mcdle.col.stack')}</th>
+            <th data-i18n="mc.mcdle.col.rarity">{t('mc.mcdle.col.rarity')}</th>
+            <th data-i18n="mc.mcdle.col.durability">{t('mc.mcdle.col.durability')}</th>
+            <th data-i18n="mc.mcdle.col.fireproof">{t('mc.mcdle.col.fireproof')}</th>
+            <th data-i18n="mc.mcdle.col.enchantable">{t('mc.mcdle.col.enchantable')}</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+
+    <div id="result" class="frost rounded-box space-y-3 p-5 text-center" hidden>
+      <div id="answer" class="flex items-center justify-center gap-3 text-xl font-bold"></div>
+      <p id="result-text"></p>
+      <pre id="share-text" class="mx-auto inline-block text-left text-lg leading-tight"></pre>
+      <div class="flex flex-wrap items-center justify-center gap-2">
+        <button id="share" type="button" class="btn btn-primary btn-sm" data-i18n="mc.mcdle.share">{t('mc.mcdle.share')}</button>
+        <button id="again" type="button" class="btn btn-sm" data-i18n="mc.mcdle.again">{t('mc.mcdle.again')}</button>
+      </div>
+      <p id="next" class="text-sm opacity-60"></p>
+    </div>
+
+    <details class="collapse collapse-arrow frost rounded-box">
+      <summary class="collapse-title font-semibold" data-i18n="mc.mcdle.howTitle">{t('mc.mcdle.howTitle')}</summary>
+      <div class="collapse-content text-sm opacity-80" data-i18n-html="mc.mcdle.how" set:html={t('mc.mcdle.how')} />
+    </details>
+  </section>
+</SgoiLayout>
+
+<script>
+  import '../../../../scripts/minecraft/mcdle.ts';
+</script>

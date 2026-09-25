@@ -61,6 +61,14 @@
       "mc-hub": {
         "blurb": "Server tools for Minecraft",
         "description": "Everything for your Minecraft server: status checker, server icons, server jars and MOTDs."
+      },
+      "mc-mcdle": {
+        "blurb": "Guess the item of the day",
+        "description": "Minecraft Wordle: guess the secret item of the day from clues about its type, stack size, rarity and more."
+      },
+      "mc-tictactoe": {
+        "blurb": "With any Minecraft item",
+        "description": "Tic-tac-toe with Minecraft items as pieces: pick any item and play against a friend or the computer."
       }
     },
     "coming": {
@@ -467,6 +475,81 @@
       "credit": "Sounds © Mojang, via <a class=\"link\" href=\"https://mcasset.cloud\" target=\"_blank\" rel=\"noopener\">mcasset.cloud</a>. Not an official Minecraft product; not approved by or associated with Mojang or Microsoft.",
       "huh": "Huh?",
       "ahh": "Ahhhh!"
+    },
+    "items": {
+      "search": "Search items…",
+      "count": {
+        "one": "{n} item",
+        "other": "{n} items"
+      }
+    },
+    "mcdle": {
+      "pageTitle": "MCdle – Daily Minecraft Item Wordle · SGOI Tools",
+      "metaDescription": "Guess the Minecraft item of the day in 8 tries. Every guess shows clues: block or item, category, stack size, rarity, durability and more. Free, no ads.",
+      "title": "MCdle",
+      "tagline": "Guess the Minecraft item of the day.",
+      "daily": "Daily",
+      "practice": "Practice",
+      "hint": "Hint",
+      "hintText": "Starts with “{letter}” and is {n} characters long.",
+      "placeholder": "Type an item or block…",
+      "tries": {
+        "one": "{n} try left",
+        "other": "{n} tries left"
+      },
+      "col": {
+        "item": "Item",
+        "type": "Type",
+        "category": "Category",
+        "stack": "Stack",
+        "rarity": "Rarity",
+        "durability": "Durability",
+        "fireproof": "Fireproof",
+        "enchantable": "Enchantability"
+      },
+      "block": "Block",
+      "item": "Item",
+      "cat": {
+        "armor": "Armor",
+        "weapon": "Weapon",
+        "tool": "Tool",
+        "food": "Food",
+        "block": "Block",
+        "other": "Other"
+      },
+      "rarity": {
+        "common": "Common",
+        "uncommon": "Uncommon",
+        "rare": "Rare",
+        "epic": "Epic"
+      },
+      "won": {
+        "one": "You got it in {n} guess!",
+        "other": "You got it in {n} guesses!"
+      },
+      "lost": "Out of tries. It was:",
+      "share": "Copy result",
+      "again": "Play again",
+      "next": "Next item in {time}",
+      "howTitle": "How to play",
+      "how": "Guess any Minecraft item or block. Each guess shows how close it is: <b>green</b> is a match, <b>red</b> is not, and <b>▲ ▼</b> tell you if the answer is higher or lower. After 3 guesses you can get a hint. Everyone gets the same item each day; <b>Practice</b> gives you a random one."
+    },
+    "ttt": {
+      "pageTitle": "Minecraft Tic-Tac-Toe – Play with Any Item · SGOI Tools",
+      "metaDescription": "Play tic-tac-toe with Minecraft items as pieces. Pick any of 1600+ items and play against a friend or the computer. Free, no ads.",
+      "title": "Tic-Tac-Toe",
+      "tagline": "Pick any Minecraft item as your piece and get three in a row.",
+      "pvp": "2 players",
+      "easy": "Computer: easy",
+      "hard": "Computer: hard",
+      "change": "Choose an item",
+      "choose": "Choose an item for player {n}",
+      "wins": "Wins",
+      "computer": "Computer",
+      "turn": "{name} to play",
+      "won": "{name} wins!",
+      "draw": "It’s a draw!",
+      "restart": "New game"
     }
   }
 }

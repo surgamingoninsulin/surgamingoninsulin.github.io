@@ -54,6 +54,7 @@ jobs:
           URLS: ${{ inputs.urls }}
           BITRATE: ${{ inputs.bitrate }}
           YT_COOKIES: ${{ secrets.YT_COOKIES }}
+          YT_COOKIES_B64: ${{ secrets.YT_COOKIES_B64 }}
         run: |
           # Only accept YouTube links, one per line.
           printf '%s\n' "$URLS" | tr ' \t,;' '\n\n\n\n' \
@@ -68,11 +69,25 @@ jobs:
           case "$BITRATE" in 128|192|256|320) ;; *) BITRATE=192 ;; esac
           echo "BITRATE=$BITRATE" >> "$GITHUB_ENV"
 
-          if [ -n "$YT_COOKIES" ]; then
-            printf '%s\n' "$YT_COOKIES" > cookies.txt
-            echo "COOKIE_ARGS=--cookies cookies.txt" >> "$GITHUB_ENV"
+          if [ -n "$YT_COOKIES_B64" ]; then
+            if ! printf '%s' "$YT_COOKIES_B64" | base64 -d > cookies.txt; then
+              : > cookies.txt
+            fi
+          elif [ -n "$YT_COOKIES" ]; then
+            printf '%s\n' "$YT_COOKIES" | tr -d '\r' > cookies.txt
           else
             echo "::warning::No YT_COOKIES secret set. YouTube usually blocks GitHub's servers without it."
+          fi
+
+          if [ -f cookies.txt ]; then
+            header=$(head -n 1 cookies.txt)
+            if { [ "$header" != "# Netscape HTTP Cookie File" ] && [ "$header" != "# HTTP Cookie File" ]; } \
+              || ! awk -F '\t' 'NF==7{ok=1} END{exit !ok}' cookies.txt; then
+              rm -f cookies.txt
+              echo "::error::YT_COOKIES is not a Netscape cookies.txt (export it with a \"Get cookies.txt LOCALLY\" extension, then save it base64-encoded as YT_COOKIES_B64)"
+              exit 1
+            fi
+            echo "COOKIE_ARGS=--cookies cookies.txt" >> "$GITHUB_ENV"
           fi
 
       - name: Download and convert

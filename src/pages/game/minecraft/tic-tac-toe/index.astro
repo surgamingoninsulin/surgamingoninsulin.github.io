@@ -1,0 +1,55 @@
+---
+import SgoiLayout from '../../../../layouts/SgoiLayout.astro';
+import McBrand from '../../../../components/McBrand.astro';
+import { t } from '../../../../i18n/server';
+---
+
+<SgoiLayout titleKey="mc.ttt.pageTitle" descriptionKey="mc.ttt.metaDescription" active="mc-tictactoe" texts={['mc']}>
+  <McBrand slot="brand" tool="mc-tictactoe" keys="mc.ttt" />
+
+  <section class="py-4 text-center" data-reveal>
+    <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl" data-i18n="mc.ttt.title">{t('mc.ttt.title')}</h1>
+    <p class="mt-2 text-lg opacity-70" data-i18n="mc.ttt.tagline">{t('mc.ttt.tagline')}</p>
+  </section>
+
+  <section class="mx-auto flex w-full max-w-3xl flex-col items-center gap-5" data-reveal>
+    <div class="join">
+      <button type="button" class="btn btn-sm join-item btn-active" data-mode="pvp" data-i18n="mc.ttt.pvp">{t('mc.ttt.pvp')}</button>
+      <button type="button" class="btn btn-sm join-item" data-mode="easy" data-i18n="mc.ttt.easy">{t('mc.ttt.easy')}</button>
+      <button type="button" class="btn btn-sm join-item" data-mode="hard" data-i18n="mc.ttt.hard">{t('mc.ttt.hard')}</button>
+    </div>
+
+    <div class="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-4">
+      {[0, 1].map((p) => (
+        <div class={`ttt-player ${p ? 'order-3 text-left' : 'text-right'}`} data-player={p}>
+          <button type="button" class="mc-slot ttt-pick" data-pick={p} title={t('mc.ttt.change')} data-i18n-attr="title:mc.ttt.change"></button>
+          <div class="min-w-0">
+            <div class="ttt-name truncate font-bold"></div>
+            <div class="text-xs opacity-60"><span data-i18n="mc.ttt.wins">{t('mc.ttt.wins')}</span>: <span class="ttt-score">0</span></div>
+          </div>
+        </div>
+      ))}
+      <div class="order-2 text-center text-sm opacity-60">vs</div>
+    </div>
+
+    <div id="board" class="ttt-board" role="grid" aria-label="Tic-tac-toe">
+      {Array.from({ length: 9 }, (_, i) => <button type="button" class="mc-slot ttt-cell" data-cell={i} aria-label={`${i + 1}`}></button>)}
+    </div>
+
+    <p id="status" class="min-h-7 text-center text-lg font-semibold" aria-live="polite"></p>
+    <button id="restart" type="button" class="btn btn-primary" data-i18n="mc.ttt.restart">{t('mc.ttt.restart')}</button>
+  </section>
+
+  <dialog slot="after" id="picker-dialog" class="modal">
+    <div class="modal-box max-w-2xl">
+      <h2 class="mb-3 text-lg font-bold" id="picker-title"></h2>
+      <div id="picker"></div>
+      <div class="modal-action"><form method="dialog"><button class="btn btn-ghost btn-sm" data-i18n="common.cancel">{t('common.cancel')}</button></form></div>
+    </div>
+    <form method="dialog" class="modal-backdrop"><button>close</button></form>
+  </dialog>
+</SgoiLayout>
+
+<script>
+  import '../../../../scripts/minecraft/tictactoe.ts';
+</script>

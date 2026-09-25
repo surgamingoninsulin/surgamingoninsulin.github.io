@@ -160,7 +160,7 @@ export const TOOL_GROUPS: ToolGroup[] = [
       description: 'Everything for your Minecraft server: status checker, server icons, server jars and MOTDs.',
       // Pickaxe (Lucide, ISC), same as the Minecraft menu icon
       icon: brandStroke('<path d="M14.531 12.469 6.619 20.38a1 1 0 1 1-3-3l7.912-7.912"/><path d="M15.686 4.314A12.5 12.5 0 0 0 5.461 2.958 1 1 0 0 0 5.58 4.71a22 22 0 0 1 6.318 3.393"/><path d="M17.7 3.7a1 1 0 0 0-1.4 0l-4.6 4.6a1 1 0 0 0 0 1.4l2.6 2.6a1 1 0 0 0 1.4 0l4.6-4.6a1 1 0 0 0 0-1.4z"/><path d="M19.686 8.314a12.501 12.501 0 0 1 1.356 10.225 1 1 0 0 1-1.751-.119 22 22 0 0 0-3.393-6.319"/>'),
-      covers: ['mc-server-info', 'mc-server-icon', 'mc-server-jars', 'mc-motd'],
+      covers: ['mc-server-info', 'mc-server-icon', 'mc-server-jars', 'mc-motd', 'mc-mcdle', 'mc-tictactoe'],
     },
     tools: [
       {
@@ -194,6 +194,22 @@ export const TOOL_GROUPS: ToolGroup[] = [
         path: 'game/minecraft/motd/',
         description: 'Design a colored, formatted server description with a live preview, then copy it straight into server.properties.',
         icon: brandStroke('<path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 20.5l1.4-5.1A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.5 10h7M8.5 13.5h4.5"/>'),
+      },
+      {
+        id: 'mc-mcdle',
+        name: 'MCdle',
+        blurb: 'Guess the item of the day',
+        path: 'game/minecraft/mcdle/',
+        description: 'Minecraft Wordle: guess the secret item of the day from clues about its type, stack size, rarity and more.',
+        icon: brandStroke('<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M15.5 15.2a2.2 2.2 0 1 1 3 2c-.6.3-1 .8-1 1.5M17.5 21h.01"/>'),
+      },
+      {
+        id: 'mc-tictactoe',
+        name: 'Tic-Tac-Toe',
+        blurb: 'With any Minecraft item',
+        path: 'game/minecraft/tic-tac-toe/',
+        description: 'Tic-tac-toe with Minecraft items as pieces: pick any item and play against a friend or the computer.',
+        icon: brandStroke('<path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>'),
       },
     ],
   },

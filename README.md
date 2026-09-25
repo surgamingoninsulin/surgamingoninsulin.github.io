@@ -18,9 +18,11 @@ text file ──▶ page finds links ──▶ GitHub API: start "Download MP3" 
 2. **Turn on Pages:** Settings → Pages → Source: **GitHub Actions**. Each push to `main` then builds and deploys the site (`.github/workflows/deploy.yml`) to `https://<you>.github.io/<repo>/`.
 3. **Add YouTube cookies.** GitHub's servers get YouTube's "confirm you're not a bot" check, so the workflow has to sign in with cookies:
    - Sign in to YouTube in your browser. A spare Google account is safer than your main one.
-   - Export `youtube.com` cookies in Netscape format, for example with the "Get cookies.txt LOCALLY" extension.
-   - Go to Settings → Secrets and variables → Actions → New repository secret. Name it `YT_COOKIES` and paste the whole file.
-   - Refresh the secret when runs start failing with the bot-check error.
+   - Export `cookies.txt` from a logged-in YouTube tab with the **Get cookies.txt LOCALLY** browser extension.
+   - Base64-encode the file. On Linux or Git Bash: `base64 -w0 cookies.txt`. In PowerShell: `[Convert]::ToBase64String([IO.File]::ReadAllBytes("cookies.txt"))`.
+   - Go to Settings → Secrets and variables → Actions → New repository secret. Name it `YT_COOKIES_B64` and paste the encoded output.
+   - YouTube cookies expire, so export and replace `YT_COOKIES_B64` every few weeks or when runs start failing with the bot-check error.
+   - Existing `YT_COOKIES` secrets are still accepted as a fallback, but `YT_COOKIES_B64` is recommended because it preserves line breaks and tabs when pasted.
 4. **Create a token for the website.** Go to [Fine-grained tokens](https://github.com/settings/personal-access-tokens/new) and set:
    - Repository access: only this repository
    - Permissions: **Actions → Read and write**

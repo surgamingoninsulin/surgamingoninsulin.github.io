@@ -61,6 +61,14 @@
       "mc-hub": {
         "blurb": "Servertools voor Minecraft",
         "description": "Alles voor je Minecraft-server: statuscheck, servericonen, server-jars en MOTD’s."
+      },
+      "mc-mcdle": {
+        "blurb": "Raad het item van de dag",
+        "description": "Minecraft-Wordle: raad het geheime item van de dag met hints over type, stapelgrootte, zeldzaamheid en meer."
+      },
+      "mc-tictactoe": {
+        "blurb": "Boter, kaas en eieren",
+        "description": "Boter, kaas en eieren met Minecraft-items als stukken: kies een item en speel tegen een vriend of de computer."
       }
     },
     "coming": {
@@ -467,6 +475,81 @@
       "credit": "Geluiden © Mojang, via <a class=\"link\" href=\"https://mcasset.cloud\" target=\"_blank\" rel=\"noopener\">mcasset.cloud</a>. Geen officieel Minecraft-product; niet goedgekeurd door of verbonden met Mojang of Microsoft.",
       "huh": "Hè?",
       "ahh": "Aaaah!"
+    },
+    "items": {
+      "search": "Zoek items…",
+      "count": {
+        "one": "{n} item",
+        "other": "{n} items"
+      }
+    },
+    "mcdle": {
+      "pageTitle": "MCdle – Dagelijkse Minecraft-Item-Wordle · SGOI Tools",
+      "metaDescription": "Raad het Minecraft-item van de dag in 8 pogingen. Elke gok geeft hints: blok of item, categorie, stapelgrootte, zeldzaamheid, duurzaamheid en meer. Gratis, zonder reclame.",
+      "title": "MCdle",
+      "tagline": "Raad het Minecraft-item van de dag.",
+      "daily": "Dagelijks",
+      "practice": "Oefenen",
+      "hint": "Hint",
+      "hintText": "Begint met “{letter}” en is {n} tekens lang.",
+      "placeholder": "Typ een item of blok…",
+      "tries": {
+        "one": "Nog {n} poging",
+        "other": "Nog {n} pogingen"
+      },
+      "col": {
+        "item": "Item",
+        "type": "Type",
+        "category": "Categorie",
+        "stack": "Stapel",
+        "rarity": "Zeldzaamheid",
+        "durability": "Duurzaamheid",
+        "fireproof": "Vuurbestendig",
+        "enchantable": "Betoverbaarheid"
+      },
+      "block": "Blok",
+      "item": "Item",
+      "cat": {
+        "armor": "Harnas",
+        "weapon": "Wapen",
+        "tool": "Gereedschap",
+        "food": "Eten",
+        "block": "Blok",
+        "other": "Overig"
+      },
+      "rarity": {
+        "common": "Gewoon",
+        "uncommon": "Ongewoon",
+        "rare": "Zeldzaam",
+        "epic": "Episch"
+      },
+      "won": {
+        "one": "Geraden in {n} poging!",
+        "other": "Geraden in {n} pogingen!"
+      },
+      "lost": "Geen pogingen meer. Het was:",
+      "share": "Resultaat kopiëren",
+      "again": "Nog een keer",
+      "next": "Volgend item over {time}",
+      "howTitle": "Zo speel je",
+      "how": "Raad een Minecraft-item of -blok. Elke gok laat zien hoe dichtbij je zit: <b>groen</b> klopt, <b>rood</b> niet, en <b>▲ ▼</b> vertellen of het antwoord hoger of lager is. Na 3 gokken kun je een hint krijgen. Iedereen krijgt elke dag hetzelfde item; <b>Oefenen</b> geeft je een willekeurig item."
+    },
+    "ttt": {
+      "pageTitle": "Minecraft Boter, Kaas en Eieren – Met Elk Item · SGOI Tools",
+      "metaDescription": "Speel boter, kaas en eieren met Minecraft-items als stukken. Kies uit 1600+ items en speel tegen een vriend of de computer. Gratis, zonder reclame.",
+      "title": "Boter, kaas en eieren",
+      "tagline": "Kies een Minecraft-item als stuk en zet er drie op een rij.",
+      "pvp": "2 spelers",
+      "easy": "Computer: makkelijk",
+      "hard": "Computer: moeilijk",
+      "change": "Kies een item",
+      "choose": "Kies een item voor speler {n}",
+      "wins": "Gewonnen",
+      "computer": "Computer",
+      "turn": "{name} is aan de beurt",
+      "won": "{name} wint!",
+      "draw": "Gelijkspel!",
+      "restart": "Nieuw spel"
     }
   }
 }

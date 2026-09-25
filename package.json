@@ -8,12 +8,14 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "mobs:update": "node scripts/update-minecraft-mobs.mjs"
+    "mobs:update": "node scripts/update-minecraft-mobs.mjs",
+    "items:update": "node scripts/update-minecraft-items.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.5",
     "daisyui": "^5.7.44",
+    "deepslate": "^0.27.1",
     "motion": "^13.4.3",
     "tailwindcss": "^4.3.3",
     "three": "^0.186.1"
@@ -23,6 +25,7 @@
     "@types/node": "^22.20.4",
     "@types/three": "^0.186.0",
     "fflate": "^0.8.3",
+    "puppeteer-core": "^25.12.0",
     "typescript": "^6.0.3"
   }
 }
