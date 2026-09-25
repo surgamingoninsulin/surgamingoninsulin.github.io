@@ -1,0 +1,94 @@
+/*
+ * Colours match the "Youtube Playlist → MP3" site (../src/styles/global.css,
+ * daisyUI themes "ytdark" and "ytlight"). Both sites share the theme choice
+ * through localStorage key "ytmp3.theme".
+ */
+:root,
+:root[data-theme="ytdark"] {
+  color-scheme: dark;
+
+  /* Palette (same values as the daisyUI theme on the other site) */
+  --color-base-100: #0e0e11;
+  --color-base-200: #16161b;
+  --color-base-300: #25252d;
+  --color-base-content: #ececf1;
+  --color-red: #ff0033;
+  --color-secondary: #a855f7;
+  --color-accent: #ff7a1a;
+  --color-success: #34d399;
+  --color-error: #ff4d5e;
+
+  /* Globals. Simple mode uses red, advanced mode orange (see ModeStore.ts). */
+  --primary: var(--color-red);
+  --primary-transparent: color-mix(in srgb, var(--primary) 30%, transparent);
+  --selection-color: color-mix(in srgb, var(--color-red) 28%, transparent);
+
+  /* Background */
+  --bg-page: var(--color-base-100);
+  --bg-card: var(--color-base-200);
+  --bg-card-alt: color-mix(in oklab, var(--color-base-100) 60%, transparent);
+  --bg-card-alt-hover: color-mix(in oklab, var(--primary) 8%, transparent);
+  --bg-section: color-mix(in oklab, var(--color-base-content) 6%, transparent);
+  --bg-input: var(--color-base-100);
+  --bg-input-placeholder: var(--color-base-200);
+  --bg-light: var(--color-base-300);
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+
+  /* Text */
+  --text-on-primary: #ffffff;
+  --text-primary: var(--color-base-content);
+  --text-secondary: color-mix(in oklab, var(--color-base-content) 70%, transparent);
+  --text-tertiary: color-mix(in oklab, var(--color-base-content) 55%, transparent);
+  --text-muted: color-mix(in oklab, var(--color-base-content) 50%, transparent);
+  --text-inverse: var(--color-base-100);
+  --text-black: #000000;
+
+  /* Border */
+  --border-light: var(--color-base-200);
+  --border-primary: var(--color-base-300);
+  --border-secondary: color-mix(in oklab, var(--color-base-content) 25%, transparent);
+  --border-transparent: #00000000;
+
+  /* Button */
+  --btn-border: var(--color-base-300);
+
+  --btn-text-primary: var(--text-on-primary);
+  --btn-bg-primary: var(--primary);
+  --btn-bg-primary-hover: color-mix(in oklab, var(--primary) 85%, black);
+
+  --btn-text-secondary: var(--text-secondary);
+  --btn-bg-secondary: var(--color-base-200);
+  --btn-bg-secondary-hover: var(--color-base-300);
+
+  scrollbar-color: var(--border-secondary) transparent;
+}
+
+:root[data-theme="ytlight"] {
+  /* The "light" theme: the dark theme a few shades lighter (dim), same accents. */
+  color-scheme: dark;
+
+  --color-base-100: #25252e;
+  --color-base-200: #2f2f3a;
+  --color-base-300: #44444f;
+  --color-base-content: #f2f2f6;
+  --color-red: #ff0033;
+  --color-secondary: #a855f7;
+  --color-accent: #ff7a1a;
+  --color-success: #34d399;
+  --color-error: #ff4d5e;
+
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+}
+
+:root[data-mode="advanced"] {
+  --primary: var(--color-accent);
+}
+
+html {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+}
+
+::selection {
+  background-color: var(--selection-color);
+}

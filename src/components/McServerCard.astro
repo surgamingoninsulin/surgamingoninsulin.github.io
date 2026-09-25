@@ -1,0 +1,27 @@
+---
+// One entry of Minecraft's multiplayer server list. The page script fills it
+// in through the data-mc-* elements (see src/scripts/minecraft/mc.ts).
+import '../styles/minecraft.css';
+import { t } from '../i18n/server';
+
+interface Props {
+  id: string;
+  /** Initial player count text, e.g. "0/20". */
+  players?: string;
+}
+const { id, players = '0/20' } = Astro.props;
+---
+
+<div id={id} class="mc-card" data-state="idle">
+  <img class="mc-icon" data-mc-icon alt="" width="64" height="64" />
+  <div class="mc-text">
+    <div class="mc-top">
+      <span class="mc-name" data-mc-name data-i18n="mc.card.defaultName">{t('mc.card.defaultName')}</span>
+      <span class="mc-right">
+        <span class="mc-players" data-mc-players>{players}</span>
+        <span class="mc-ping" data-mc-ping aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+      </span>
+    </div>
+    <div class="mc-motd" data-mc-motd data-i18n="mc.card.defaultMotd">{t('mc.card.defaultMotd')}</div>
+  </div>
+</div>

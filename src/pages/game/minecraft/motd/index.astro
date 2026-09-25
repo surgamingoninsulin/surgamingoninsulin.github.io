@@ -1,0 +1,100 @@
+---
+import SgoiLayout from '../../../../layouts/SgoiLayout.astro';
+import McBrand from '../../../../components/McBrand.astro';
+import McServerCard from '../../../../components/McServerCard.astro';
+import { t } from '../../../../i18n/server';
+
+const colors = [
+  ['0', '#000000'], ['1', '#0000AA'], ['2', '#00AA00'], ['3', '#00AAAA'],
+  ['4', '#AA0000'], ['5', '#AA00AA'], ['6', '#FFAA00'], ['7', '#AAAAAA'],
+  ['8', '#555555'], ['9', '#5555FF'], ['a', '#55FF55'], ['b', '#55FFFF'],
+  ['c', '#FF5555'], ['d', '#FF55FF'], ['e', '#FFFF55'], ['f', '#FFFFFF'],
+];
+const formats = [
+  ['l', 'bold', 'font-bold', 'B'],
+  ['o', 'italic', 'italic', 'I'],
+  ['n', 'underline', 'underline', 'U'],
+  ['m', 'strike', 'line-through', 'S'],
+  ['k', 'obfuscated', '', '?'],
+  ['r', 'reset', '', '↺'],
+];
+---
+
+<SgoiLayout titleKey="mc.motd.pageTitle" descriptionKey="mc.motd.metaDescription" active="mc-motd" texts={['mc']}>
+  <McBrand slot="brand" tool="mc-motd" keys="mc.motd" />
+
+  <section class="py-4 text-center" data-reveal>
+    <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl" data-i18n="mc.motd.title">{t('mc.motd.title')}</h1>
+    <p class="mt-2 text-lg opacity-70" data-i18n="mc.motd.tagline">{t('mc.motd.tagline')}</p>
+  </section>
+
+  <div data-reveal>
+    <McServerCard id="card" players="0/20" />
+  </div>
+
+  <section class="frost rounded-box mx-auto w-full max-w-4xl space-y-4 p-5" data-reveal>
+    <label class="fieldset">
+      <span class="fieldset-legend" data-i18n="mc.motd.name">{t('mc.motd.name')}</span>
+      <input id="name" class="input w-full" maxlength="40" value="Minecraft Server" />
+    </label>
+
+    {[1, 2].map((n) => (
+      <label class="fieldset">
+        <span class="fieldset-legend flex w-full justify-between">
+          <span data-i18n={`mc.motd.line${n}`}>{t(`mc.motd.line${n}`)}</span>
+          <span id={`count${n}`} class="font-mono text-xs opacity-60"></span>
+        </span>
+        <input id={`line${n}`} class="input mc-font w-full" spellcheck="false" autocomplete="off" />
+      </label>
+    ))}
+
+    <div class="flex flex-wrap items-center gap-2" role="toolbar" aria-label="Colors">
+      {colors.map(([code, hex]) => (
+        <button type="button" class="mc-swatch" style={`background:${hex}`} data-code={code} title={`&${code}`} aria-label={`&${code}`}></button>
+      ))}
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+      {formats.map(([code, key, cls, label]) => (
+        <button type="button" class={`btn btn-sm min-w-10 ${cls}`} data-code={code} title={`&${code} · ${t(`mc.motd.fmt.${key}`)}`} data-i18n-attr={`aria-label:mc.motd.fmt.${key}`} aria-label={t(`mc.motd.fmt.${key}`)}>{label}</button>
+      ))}
+      <span class="divider divider-horizontal mx-0"></span>
+      <button id="center" type="button" class="btn btn-sm" data-i18n="mc.motd.center">{t('mc.motd.center')}</button>
+      <button id="example" type="button" class="btn btn-sm" data-i18n="mc.motd.example">{t('mc.motd.example')}</button>
+      <button id="clear" type="button" class="btn btn-sm btn-ghost" data-i18n="common.clear">{t('common.clear')}</button>
+    </div>
+
+    <div class="rounded-box flex flex-wrap items-center gap-3 bg-base-100/60 p-3">
+      <span class="text-sm font-semibold" data-i18n="mc.motd.gradient">{t('mc.motd.gradient')}</span>
+      <input id="g1" type="color" value="#ff5555" class="h-8 w-10 cursor-pointer rounded" aria-label="Start" />
+      <span aria-hidden="true">→</span>
+      <input id="g2" type="color" value="#ffaa00" class="h-8 w-10 cursor-pointer rounded" aria-label="End" />
+      <button id="apply-gradient" type="button" class="btn btn-sm btn-secondary" data-i18n="mc.motd.applyGradient">{t('mc.motd.applyGradient')}</button>
+      <span class="text-xs opacity-60" data-i18n="mc.motd.gradientHint">{t('mc.motd.gradientHint')}</span>
+    </div>
+    <p class="text-xs opacity-60" data-i18n-html="mc.motd.hint" set:html={t('mc.motd.hint')} />
+  </section>
+
+  <section class="mx-auto grid w-full max-w-4xl gap-4" data-reveal>
+    {[
+      ['props', 'mc.motd.outProps', 'mc.motd.outPropsHint'],
+      ['amp', 'mc.motd.outAmp', 'mc.motd.outAmpHint'],
+      ['mini', 'mc.motd.outMini', 'mc.motd.outMiniHint'],
+    ].map(([id, title, hint]) => (
+      <div class="frost rounded-box p-4">
+        <div class="mb-2 flex items-center justify-between gap-3">
+          <div>
+            <h2 class="font-bold" data-i18n={title}>{t(title)}</h2>
+            <p class="text-xs opacity-60" data-i18n={hint}>{t(hint)}</p>
+          </div>
+          <button type="button" class="btn btn-sm" data-copy={id} data-i18n="mc.common.copy">{t('mc.common.copy')}</button>
+        </div>
+        <pre id={`out-${id}`} class="bg-base-100/70 overflow-x-auto rounded-lg p-3 font-mono text-xs whitespace-pre-wrap break-all"></pre>
+      </div>
+    ))}
+    <p id="hex-note" class="text-warning text-center text-sm" data-i18n="mc.motd.hexNote" hidden>{t('mc.motd.hexNote')}</p>
+  </section>
+</SgoiLayout>
+
+<script>
+  import '../../../../scripts/minecraft/motd.ts';
+</script>

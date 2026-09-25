@@ -1,0 +1,162 @@
+/* Minecraft tools: the in-game server list look. --mc-dirt is set by
+   src/scripts/minecraft/mc.ts (a generated texture). */
+
+.mc-font {
+  font-family: 'Monocraft', ui-monospace, monospace;
+  letter-spacing: 0.02em;
+}
+
+.mc-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
+  padding: 12px;
+  background-color: #2b1f16;
+  background-image: linear-gradient(rgb(0 0 0 / 0.45), rgb(0 0 0 / 0.45)), var(--mc-dirt, none);
+  background-size: auto, 48px 48px;
+  image-rendering: pixelated;
+  border: 2px solid transparent;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.5);
+  font-family: 'Monocraft', ui-monospace, monospace;
+  color: #fff;
+  text-align: left;
+  text-shadow: 2px 2px 0 rgb(0 0 0 / 0.55);
+  transition: border-color 0.2s;
+}
+.mc-card:hover { border-color: #a0a0a0; }
+.mc-icon {
+  flex: none;
+  width: 72px;
+  height: 72px;
+  image-rendering: pixelated;
+  background: #3a3a3a;
+}
+.mc-text { min-width: 0; flex: 1; }
+.mc-top { display: flex; gap: 12px; align-items: baseline; }
+.mc-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 1.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mc-right { display: flex; gap: 8px; align-items: center; flex: none; }
+.mc-players { color: #aaa; font-size: 1.05rem; }
+.mc-motd {
+  margin-top: 4px;
+  color: #aaa;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  white-space: pre;
+  overflow: hidden;
+  min-height: 2.9em;
+}
+
+/* Signal bars: green when online, a red cross when offline, cycling while pinging. */
+.mc-ping { display: inline-flex; align-items: flex-end; gap: 1px; height: 16px; }
+.mc-ping i { display: block; width: 3px; background: #555; box-shadow: 1px 1px 0 rgb(0 0 0 / 0.5); }
+.mc-ping i:nth-child(1) { height: 4px; }
+.mc-ping i:nth-child(2) { height: 7px; }
+.mc-ping i:nth-child(3) { height: 10px; }
+.mc-ping i:nth-child(4) { height: 13px; }
+.mc-ping i:nth-child(5) { height: 16px; }
+.mc-card[data-state='online'] .mc-ping i { background: #55ff55; }
+.mc-card[data-state='weak'] .mc-ping i:nth-child(-n + 3) { background: #ffff55; }
+.mc-card[data-state='offline'] .mc-ping { position: relative; }
+.mc-card[data-state='offline'] .mc-ping::after {
+  content: '✕';
+  position: absolute;
+  inset: -4px 0 0;
+  color: #ff5555;
+  font-size: 14px;
+  text-align: center;
+}
+.mc-card[data-state='loading'] .mc-ping i { animation: mc-ping 1s steps(1) infinite; }
+.mc-card[data-state='loading'] .mc-ping i:nth-child(2) { animation-delay: 0.1s; }
+.mc-card[data-state='loading'] .mc-ping i:nth-child(3) { animation-delay: 0.2s; }
+.mc-card[data-state='loading'] .mc-ping i:nth-child(4) { animation-delay: 0.3s; }
+.mc-card[data-state='loading'] .mc-ping i:nth-child(5) { animation-delay: 0.4s; }
+@keyframes mc-ping {
+  0%, 60% { background: #555; }
+  20% { background: #aaa; }
+}
+
+/* Small helpers shared by the Minecraft pages */
+.mc-kv { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; }
+.mc-kv dt { opacity: 0.6; }
+.mc-kv dd { min-width: 0; overflow-wrap: anywhere; }
+.mc-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 2px solid rgb(0 0 0 / 0.35);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.15);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.mc-swatch:hover, .mc-swatch:focus-visible { transform: scale(1.15); outline: none; }
+
+@media (max-width: 520px) {
+  .mc-icon { width: 56px; height: 56px; }
+  .mc-name, .mc-motd, .mc-players { font-size: 0.85rem; }
+  .mc-motd { white-space: pre-wrap; }
+}
+
+/* ---------- creeper easter egg (src/scripts/minecraft/creeper.ts) ---------- */
+.creeper-stage { position: fixed; inset: 0; z-index: 70; pointer-events: none; overflow: hidden; }
+/* The three.js canvas with the 3D mobs (src/scripts/minecraft/mobs3d.ts). */
+.creeper-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* The villager's speech bubble, placed next to its head. */
+.mc-bubble {
+  position: absolute;
+  z-index: 1;
+  padding: 0.45rem 0.9rem;
+  border: 3px solid #1c1c1c;
+  border-radius: 0.6rem;
+  background: #fff;
+  color: #1c1c1c;
+  font-family: 'Monocraft', ui-monospace, monospace;
+  font-size: clamp(1.1rem, 3vw, 1.8rem);
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 4px 4px 0 rgb(0 0 0 / 0.35);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.mc-bubble.show { transform: translate(-50%, -50%) scale(1); }
+.creeper-flash { position: absolute; inset: 0; opacity: 0; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgb(255 236 180 / 0.9), transparent 35vmin); }
+.creeper-bit { position: absolute; box-shadow: inset -3px -3px 0 rgb(0 0 0 / 0.25); }
+.creeper-puff { position: absolute; background: #d9d9d9; box-shadow: inset -4px -4px 0 rgb(0 0 0 / 0.12); }
+
+/* the clickable creeper on the Minecraft page: looks just like the one that rises */
+.creeper-button {
+  display: inline-grid;
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+  filter: drop-shadow(0 10px 18px rgb(0 0 0 / 0.55));
+}
+.creeper-button svg { display: block; width: 100%; height: 100%; }
+
+/* ---------- mob visits (src/scripts/minecraft/mobs3d.ts) ---------- */
+/* Invisible click target that follows the visiting mob. */
+.mob-hit {
+  position: absolute;
+  pointer-events: auto;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.mob-hit:focus-visible { outline: 2px dashed #eab308; outline-offset: 4px; }
+/* Items that pop out or fly (drops, eggs, arrows). */
+.mob-item {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 4px 6px rgb(0 0 0 / 0.5));
+}

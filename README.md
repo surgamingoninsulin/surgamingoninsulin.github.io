@@ -1,101 +1,73 @@
-<p align="center"><img src=".github/assets/banner.png" alt="Pixelith" width="720"></p>
+# Youtube Playlist → MP3
 
-Static site (Astro) that's the home for the projects I build, experiment with and share, hosted on GitHub Pages.
-It can host games, tools, creative experiments and Minecraft projects together, grouped into clear sections in the nav.
-The files themselves are **not** stored here: each download is a link to a GitHub Release.
+A static site on GitHub Pages. You drop in any text file that contains YouTube playlist or video links, and every song comes back as a tagged MP3 with cover art.
+
+YouTube blocks direct downloads from the browser, so this site doesn't download anything itself. It sends the links to a **GitHub Actions** workflow in this repository. The workflow runs [ yt-dlp](https://github.com/ yt-dlp/ yt-dlp) and ffmpeg and uploads the MP3s as a ZIP artifact. The page then follows the run and gives you a **Download ZIP** button when it's done.
 
 ```
+text file ──▶ page finds links ──▶ GitHub API: start "Download MP3" workflow
+                                               │
+                          yt-dlp + ffmpeg on GitHub's runner
+                                               │
+            Download ZIP ◀── page polls the run ◀── MP3s uploaded as artifact
+```
+
+## Setup (one time)
+
+1. **Push this project** to a GitHub repository, for example `yt-mp3`.
+2. **Turn on Pages:** Settings → Pages → Source: **GitHub Actions**. Each push to `main` then builds and deploys the site (`.github/workflows/deploy.yml`) to `https://<you>.github.io/<repo>/`.
+3. **Add YouTube cookies.** GitHub's servers get YouTube's "confirm you're not a bot" check, so the workflow has to sign in with cookies:
+   - Sign in to YouTube in your browser. A spare Google account is safer than your main one.
+   - Export `youtube.com` cookies in Netscape format, for example with the "Get cookies.txt LOCALLY" extension.
+   - Go to Settings → Secrets and variables → Actions → New repository secret. Name it `YT_COOKIES` and paste the whole file.
+   - Refresh the secret when runs start failing with the bot-check error.
+4. **Create a token for the website.** Go to [Fine-grained tokens](https://github.com/settings/personal-access-tokens/new) and set:
+   - Repository access: only this repository
+   - Permissions: **Actions → Read and write**
+
+   Open the site, click **Connect GitHub**, and paste the token. It's stored only in your browser's localStorage.
+
+## Using it
+
+1. Click the drop zone, drag a file onto the page, or paste text with **Ctrl+V**. Any text format works (`.txt`, `.csv`, `.json`, `.md`, `.html`, `.m3u`…). The page finds every `youtube.com`, `music.youtube.com` and `youtu.be` link in it.
+2. The page checks each link and shows its title. Private or broken links are marked and skipped.
+3. Pick a quality and click **Convert**. Each playlist ends up in its own folder inside the ZIP.
+
+You can also start a download without the website: Actions → **Download MP3** → Run workflow, then paste the URLs.
+
+## Good to know
+
+- **Artifacts are kept for 1 day.** Change `retention-days` in `download.yml` if you want them longer.
+- **In a public repository, anyone with a GitHub account can see the run logs and download the artifacts** until they expire. Make the repository private if that's a problem. Pages on a private repo needs a paid plan, and private repos get 2,000 free Actions minutes a month; public repos get unlimited minutes.
+- A job can run for up to 3 hours, which is plenty for a few hundred songs.
+- Only download content you have the rights to.
+
+## Development
+
+```sh
 npm install
 npm run dev      # http://localhost:4321
-npm run build    # static site in dist/
+npm run build    # type-check + static build into dist/
 ```
 
-## Adding a project
+### Debug mode (local testing)
 
-The **folder** decides the section:
+`DEBUG` in `src/config.ts` is `true` during `npm run dev`. In debug mode the page doesn't use GitHub at all:
 
-| Section | File |
-|---|---|
-| Resource pack | `public/downloads/resourcepacks/<name>/<name>.md` |
-| Data pack | `public/downloads/datapacks/<name>/<name>.md` |
-| Plugin | `public/downloads/plugins/<name>/<name>.md` |
-| Mod | `public/downloads/mods/<name>/<name>.md` |
+- A dev-only server runs yt-dlp on your own computer, with the same `yt-dlp.conf` as the workflow.
+- If yt-dlp isn't installed, the standalone build is downloaded into `.tools/` on the first run. ffmpeg must be on your PATH.
+- MP3s are saved to `local-downloads/<playlist name>/`, one folder per playlist. Loose video links go to `local-downloads/Singles/`. The page offers each playlist as a ZIP.
+- Adding a playlist that's already on disk updates that folder instead of creating a new one. Each run lists the playlist on YouTube and checks every MP3's link and length with ffprobe. Complete songs are skipped, too-short or broken files are replaced, and missing songs are downloaded, until the playlist is complete. **Update** runs the same check again.
+- Bookkeeping (links, file checks, download archives) is kept in `.state/`, so the playlist folders contain only MP3s.
+- An optional `cookies.txt` in the project root is used if present. It's git-ignored.
 
-1. Publish the file as a **GitHub Release** in the project's own repo (Releases → Draft a new release → tag, e.g. `v1.0.0` → attach the `.zip` / `.jar`).
-2. Copy the asset's link (right-click the file on the release page → copy link). It looks like
-   `https://github.com/<user>/<repo>/releases/download/v1.0.0/<file>.zip`
-3. Copy an existing `.md` into the right folder above and put that link in `file:`.
-4. `git add . && git commit -m "Add <name>" && git push` — GitHub Actions rebuilds the site.
+The production build (`npm run build`) contains none of this code.
 
-## Icon (automatic — no path to type out)
-
-Drop an image at `public/downloads/<type>/<slug>/icon.png` (or `.jpg`/`.jpeg`/`.webp`/`.gif`/`.svg`), beside the Markdown file, where
-`<slug>` matches the `.md` file's name. It's picked up automatically — no `icon:` line needed in the frontmatter.
-
-You can also add `header.png`, `header.webp`, `header.jpg`, `header.jpeg`, `header.gif` or `header.svg` in the same folder for the wide image on the project detail page. A frontmatter `header:` value may also be a full `https://` URL. If it is omitted, the project placeholder is used. The same image extensions and URL support apply to `icon:`.
-
-Use `featured: true` (or the accepted alias `features: true`) to place a project in the Featured tools shelf.
-
-You can set images explicitly in the Markdown frontmatter too:
-
-```yaml
-icon: icon.webp
-header: header.webp
-```
-
-Both values may instead be full HTTPS image URLs. Local filenames are resolved from the project folder.
-So adding a project is just: **the `.md` file + an icon file next to it in `public/`.**
-
-You only need an `icon:` line if the image lives somewhere else (another folder, or a full `https://` URL) —
-an explicit `icon:` always wins over the automatic one.
-
-## Keeping older versions
-
-Every version is one entry in `versions:`. Never delete old ones; add a new entry on top for each release.
-The newest `date` becomes the big "Download" button; all entries appear in the project's **Versions** tab.
-
-```yaml
-versions:
-  - version: 1.1.0
-    mc: ["1.21.5"]
-    file: https://github.com/<user>/<repo>/releases/download/v1.1.0/pack-1.1.0.zip
-    date: 2026-10-01
-    changelog: New GUI textures.
-  - version: 1.0.0
-    mc: ["1.21.4"]
-    file: https://github.com/<user>/<repo>/releases/download/v1.0.0/pack-1.0.0.zip
-    date: 2026-09-01
-    changelog: Initial release.
-```
-
-Old GitHub Releases stay available as long as you don't delete them, so old links keep working.
-`mc` can be left out entirely for a non-Minecraft download — it's optional.
-
-Filter options (categories, loaders, resolutions) are in `src/data/site.ts`.
-
-## Deploying
-
-Repo → Settings → Pages → Source: **GitHub Actions**. `.github/workflows/deploy.yml` sets the base path from the repo name.
-
-## All-in-one projects (e.g. resource pack + data pack)
-
-Some downloads are several kinds at once. Keep the file in its **main** folder and list the other sections with `alsoIn`:
-
-```yaml
-# public/downloads/resourcepacks/my-combo/my-combo.md
-title: My Combo
-alsoIn: [datapacks]
-```
-
-It then appears in **both** the Resource Packs and Data Packs sections (one project page, under its main folder), with a yellow dot on its icon, an "All-in-one" tag on the card, and a yellow warning on the page telling people to install it in both folders.
-
-## Adding a new group later (beyond Minecraft)
-
-The nav is built from `groups` + `types` in `src/data/site.ts`: each type belongs to a `group`, and Header
-renders one dropdown per group automatically. To open up a new top-level section (e.g. "Apps"):
-
-1. Add a group to `groups` in `src/data/site.ts`.
-2. Add one or more entries to `types` with that `group` key (and their own categories/loaders as needed).
-3. Add a matching folder under `public/downloads/` and place `<name>.md` plus `icon.png` inside it.
-
-No other wiring needed — the nav, filters and project pages pick it up on their own.
+| Path | What it does |
+| --- | --- |
+| `src/pages/index.astro` | Page markup |
+| `src/scripts/parse.ts` | Finds YouTube links in any text |
+| `src/scripts/github.ts` | GitHub API: start the workflow, follow runs, download artifacts |
+| `src/scripts/app.ts` | UI logic |
+| `.github/workflows/download.yml` |  yt-dlp → MP3 → artifact |
+| `.github/workflows/deploy.yml` | Build and deploy to GitHub Pages |

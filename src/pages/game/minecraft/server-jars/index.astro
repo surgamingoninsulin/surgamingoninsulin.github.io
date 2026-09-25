@@ -1,0 +1,73 @@
+---
+import SgoiLayout from '../../../../layouts/SgoiLayout.astro';
+import McBrand from '../../../../components/McBrand.astro';
+import '../../../../styles/minecraft.css';
+import { t } from '../../../../i18n/server';
+---
+
+<SgoiLayout titleKey="mc.jars.pageTitle" descriptionKey="mc.jars.metaDescription" active="mc-server-jars" texts={['mc']}>
+  <McBrand slot="brand" tool="mc-server-jars" keys="mc.jars" />
+
+  <section class="py-4 text-center" data-reveal>
+    <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl" data-i18n="mc.jars.title">{t('mc.jars.title')}</h1>
+    <p class="mt-2 text-lg opacity-70" data-i18n="mc.jars.tagline">{t('mc.jars.tagline')}</p>
+  </section>
+
+  <section class="frost rounded-box mx-auto w-full max-w-4xl p-5" data-reveal>
+    <div class="flex flex-wrap items-end justify-center gap-4">
+      <fieldset class="fieldset min-w-48 flex-1 sm:flex-none">
+        <legend class="fieldset-legend text-base" data-i18n="mc.jars.type">{t('mc.jars.type')}</legend>
+        <select id="type" class="select w-full sm:w-56" disabled><option>…</option></select>
+      </fieldset>
+      <fieldset class="fieldset min-w-36 flex-1 sm:flex-none">
+        <legend class="fieldset-legend text-base" data-i18n="mc.jars.version">{t('mc.jars.version')}</legend>
+        <select id="version" class="select w-full sm:w-40" disabled><option>…</option></select>
+      </fieldset>
+      <a id="download" class="btn btn-primary btn-disabled mb-1" href="#" rel="noopener" aria-disabled="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>
+        <span data-i18n="mc.jars.download">{t('mc.jars.download')}</span>
+      </a>
+    </div>
+
+    <div id="type-info" class="mt-5 flex items-start gap-4" hidden>
+      <img id="type-icon" class="size-12 flex-none rounded-lg" alt="" width="48" height="48" />
+      <div class="min-w-0 text-sm">
+        <div class="flex flex-wrap items-center gap-2">
+          <a id="type-home" class="text-base font-bold hover:underline" target="_blank" rel="noopener"></a>
+          <span id="type-tags" class="flex flex-wrap gap-1"></span>
+        </div>
+        <p id="type-desc" class="mt-1 opacity-70"></p>
+        <p id="type-zip" class="text-warning mt-2" data-i18n="mc.jars.zipNote" hidden>{t('mc.jars.zipNote')}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-5xl" data-reveal>
+    <div class="mb-2 flex items-center justify-between gap-3">
+      <p id="status" class="text-sm opacity-70" aria-live="polite" data-i18n="mc.jars.loading">{t('mc.jars.loading')}</p>
+      <label class="label cursor-pointer gap-2 text-sm">
+        <input id="snapshots" type="checkbox" class="toggle toggle-sm" />
+        <span data-i18n="mc.jars.snapshots">{t('mc.jars.snapshots')}</span>
+      </label>
+    </div>
+    <div class="frost rounded-box overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th data-i18n="mc.jars.mcVersion">{t('mc.jars.mcVersion')}</th>
+            <th data-i18n="mc.jars.build">{t('mc.jars.build')}</th>
+            <th class="hidden sm:table-cell" data-i18n="mc.jars.java">{t('mc.jars.java')}</th>
+            <th data-i18n="mc.jars.released">{t('mc.jars.released')}</th>
+            <th class="w-24"></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="mt-3 text-center text-xs opacity-50" data-i18n-html="mc.jars.source" set:html={t('mc.jars.source')} />
+  </section>
+</SgoiLayout>
+
+<script>
+  import '../../../../scripts/minecraft/server-jars.ts';
+</script>

@@ -1,0 +1,287 @@
+# ==== Converter handlers ====
+[submodule "all-files-convert/src/handlers/envelope"]
+	path = all-files-convert/src/handlers/envelope
+	url = https://github.com/p2r3/envelope
+[submodule "all-files-convert/src/handlers/qoi-fu"]
+	path = all-files-convert/src/handlers/qoi-fu
+	url = https://github.com/pfusik/qoi-fu
+[submodule "all-files-convert/src/handlers/sppd"]
+	path = all-files-convert/src/handlers/sppd
+	url = https://github.com/p2r3/sppd
+[submodule "all-files-convert/src/handlers/qoa-fu"]
+	path = all-files-convert/src/handlers/qoa-fu
+	url = https://github.com/pfusik/qoa-fu
+[submodule "all-files-convert/src/handlers/image-to-txt"]
+	path = all-files-convert/src/handlers/image-to-txt
+	url = https://github.com/zipsegv/image-to-txt
+[submodule "all-files-convert/src/handlers/espeakng.js"]
+	path = all-files-convert/src/handlers/espeakng.js
+	url = https://github.com/TheZipCreator/espeakng.js
+[submodule "all-files-convert/src/handlers/rpgmvp-decrypter"]
+	path = all-files-convert/src/handlers/rpgmvp-decrypter
+	url = https://github.com/ConnorTippets/RPG-Maker-MV-Decrypter.git
+[submodule "all-files-convert/src/handlers/terraria-wld-parser"]
+	path = all-files-convert/src/handlers/terraria-wld-parser
+	url = https://github.com/ConnorTippets/terraria-world-file-ts.git
+[submodule "all-files-convert/src/handlers/gimper"]
+	path = all-files-convert/src/handlers/gimper
+	url = https://github.com/ConnorTippets/gimper.git
+[submodule "all-files-convert/src/handlers/turbowarp/unpackager"]
+	path = all-files-convert/src/handlers/turbowarp/unpackager
+	url = https://github.com/TurboWarp/unpackager.git
+
+# ==== Minecraft ====
+[submodule "all-files-convert/src/handlers/minecraft/deepslate"]
+	path = all-files-convert/src/handlers/minecraft/deepslate
+	url = https://github.com/misode/deepslate.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/minecraft/skinview3d"]
+	path = all-files-convert/src/handlers/minecraft/skinview3d
+	url = https://github.com/bs-community/skinview3d.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/minecraft/prismarine-schematic"]
+	path = all-files-convert/src/handlers/minecraft/prismarine-schematic
+	url = https://github.com/PrismarineJS/prismarine-schematic.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/minecraft/Spyglass"]
+	path = all-files-convert/src/handlers/minecraft/Spyglass
+	url = https://github.com/SpyglassMC/Spyglass.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/minecraft/sandstone"]
+	path = all-files-convert/src/handlers/minecraft/sandstone
+	url = https://github.com/sandstone-mc/sandstone.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/minecraft/jmc"]
+	path = all-files-convert/src/handlers/minecraft/jmc
+	url = https://github.com/WingedSeal/jmc.git
+	shallow = true
+
+# ==== Hytale ====
+[submodule "all-files-convert/src/handlers/hytale/blockbench-plugin"]
+	path = all-files-convert/src/handlers/hytale/blockbench-plugin
+	url = https://github.com/JannisX11/hytale-blockbench-plugin.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/hytale/HytaleModel"]
+	path = all-files-convert/src/handlers/hytale/HytaleModel
+	url = https://github.com/zimokernel/HytaleModel.git
+	shallow = true
+
+# ==== Roblox ====
+[submodule "all-files-convert/src/handlers/roblox/rbxm-parser-ts"]
+	path = all-files-convert/src/handlers/roblox/rbxm-parser-ts
+	url = https://github.com/fiveman1/rbxm-parser-ts.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/roblox/rbxBinaryParser"]
+	path = all-files-convert/src/handlers/roblox/rbxBinaryParser
+	url = https://github.com/MrSprinkleToes/rbxBinaryParser.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/roblox/roblox-xml-parser"]
+	path = all-files-convert/src/handlers/roblox/roblox-xml-parser
+	url = https://github.com/IsEmil/roblox-xml-parser.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/roblox/rbx-dom"]
+	path = all-files-convert/src/handlers/roblox/rbx-dom
+	url = https://github.com/rojo-rbx/rbx-dom.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/roblox/roblox-ts"]
+	path = all-files-convert/src/handlers/roblox/roblox-ts
+	url = https://github.com/roblox-ts/roblox-ts.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/roblox/luau"]
+	path = all-files-convert/src/handlers/roblox/luau
+	url = https://github.com/luau-lang/luau.git
+	shallow = true
+
+# ==== Lua ====
+[submodule "all-files-convert/src/handlers/lua/luaparse"]
+	path = all-files-convert/src/handlers/lua/luaparse
+	url = https://github.com/fstirlitz/luaparse.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/lua/wasmoon"]
+	path = all-files-convert/src/handlers/lua/wasmoon
+	url = https://github.com/ceifa/wasmoon.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/lua/fengari"]
+	path = all-files-convert/src/handlers/lua/fengari
+	url = https://github.com/fengari-lua/fengari.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/lua/TypeScriptToLua"]
+	path = all-files-convert/src/handlers/lua/TypeScriptToLua
+	url = https://github.com/TypeScriptToLua/TypeScriptToLua.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/lua/Fennel"]
+	path = all-files-convert/src/handlers/lua/Fennel
+	url = https://github.com/bakpakin/Fennel.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/lua/selene"]
+	path = all-files-convert/src/handlers/lua/selene
+	url = https://github.com/Kampfkarren/selene.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/lua/stylua"]
+	path = all-files-convert/src/handlers/lua/stylua
+	url = https://github.com/JohnnyMorganz/StyLua.git
+	shallow = true
+
+# ==== Code: run programs in the browser ====
+[submodule "all-files-convert/src/handlers/code/pyodide"]
+	path = all-files-convert/src/handlers/code/pyodide
+	url = https://github.com/pyodide/pyodide.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/skulpt"]
+	path = all-files-convert/src/handlers/code/skulpt
+	url = https://github.com/skulpt/skulpt.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/brython"]
+	path = all-files-convert/src/handlers/code/brython
+	url = https://github.com/brython-dev/brython.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/RustPython"]
+	path = all-files-convert/src/handlers/code/RustPython
+	url = https://github.com/RustPython/RustPython.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/ruby.wasm"]
+	path = all-files-convert/src/handlers/code/ruby.wasm
+	url = https://github.com/ruby/ruby.wasm.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/opal"]
+	path = all-files-convert/src/handlers/code/opal
+	url = https://github.com/opal/opal.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/php-wasm"]
+	path = all-files-convert/src/handlers/code/php-wasm
+	url = https://github.com/seanmorris/php-wasm.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/doppio"]
+	path = all-files-convert/src/handlers/code/doppio
+	url = https://github.com/plasma-umass/doppio.git
+	shallow = true
+
+# ==== Code: transpilers (language -> language) ====
+[submodule "all-files-convert/src/handlers/code/babel"]
+	path = all-files-convert/src/handlers/code/babel
+	url = https://github.com/babel/babel.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/esbuild"]
+	path = all-files-convert/src/handlers/code/esbuild
+	url = https://github.com/evanw/esbuild.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/TypeScript"]
+	path = all-files-convert/src/handlers/code/TypeScript
+	url = https://github.com/microsoft/TypeScript.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/coffeescript"]
+	path = all-files-convert/src/handlers/code/coffeescript
+	url = https://github.com/jashkenas/coffeescript.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/decaffeinate"]
+	path = all-files-convert/src/handlers/code/decaffeinate
+	url = https://github.com/decaffeinate/decaffeinate.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/Fable"]
+	path = all-files-convert/src/handlers/code/Fable
+	url = https://github.com/fable-compiler/Fable.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/assemblyscript"]
+	path = all-files-convert/src/handlers/code/assemblyscript
+	url = https://github.com/AssemblyScript/assemblyscript.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/wgpu"]
+	path = all-files-convert/src/handlers/code/wgpu
+	url = https://github.com/gfx-rs/wgpu.git
+	shallow = true
+
+# ==== Code: formatters, beautifiers, minifiers ====
+[submodule "all-files-convert/src/handlers/code/prettier"]
+	path = all-files-convert/src/handlers/code/prettier
+	url = https://github.com/prettier/prettier.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/js-beautify"]
+	path = all-files-convert/src/handlers/code/js-beautify
+	url = https://github.com/beautifier/js-beautify.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/sql-formatter"]
+	path = all-files-convert/src/handlers/code/sql-formatter
+	url = https://github.com/sql-formatter-org/sql-formatter.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/terser"]
+	path = all-files-convert/src/handlers/code/terser
+	url = https://github.com/terser/terser.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/html-minifier-terser"]
+	path = all-files-convert/src/handlers/code/html-minifier-terser
+	url = https://github.com/terser/html-minifier-terser.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/clean-css"]
+	path = all-files-convert/src/handlers/code/clean-css
+	url = https://github.com/clean-css/clean-css.git
+	shallow = true
+
+# ==== Code: templates and stylesheets ====
+[submodule "all-files-convert/src/handlers/code/pug"]
+	path = all-files-convert/src/handlers/code/pug
+	url = https://github.com/pugjs/pug.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/handlebars.js"]
+	path = all-files-convert/src/handlers/code/handlebars.js
+	url = https://github.com/handlebars-lang/handlebars.js.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/stylus"]
+	path = all-files-convert/src/handlers/code/stylus
+	url = https://github.com/stylus/stylus.git
+	shallow = true
+
+# ==== Code: data and config formats ====
+[submodule "all-files-convert/src/handlers/code/yaml"]
+	path = all-files-convert/src/handlers/code/yaml
+	url = https://github.com/eemeli/yaml.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/smol-toml"]
+	path = all-files-convert/src/handlers/code/smol-toml
+	url = https://github.com/squirrelchat/smol-toml.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/json5"]
+	path = all-files-convert/src/handlers/code/json5
+	url = https://github.com/json5/json5.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/fast-xml-parser"]
+	path = all-files-convert/src/handlers/code/fast-xml-parser
+	url = https://github.com/NaturalIntelligence/fast-xml-parser.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/json-to-go"]
+	path = all-files-convert/src/handlers/code/json-to-go
+	url = https://github.com/mholt/json-to-go.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/quicktype"]
+	path = all-files-convert/src/handlers/code/quicktype
+	url = https://github.com/glideapps/quicktype.git
+	shallow = true
+
+# ==== Code: parsing, highlighting, diagrams ====
+[submodule "all-files-convert/src/handlers/code/tree-sitter"]
+	path = all-files-convert/src/handlers/code/tree-sitter
+	url = https://github.com/tree-sitter/tree-sitter.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/tree-sitter-wasms"]
+	path = all-files-convert/src/handlers/code/tree-sitter-wasms
+	url = https://github.com/Gregoor/tree-sitter-wasms.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/shiki"]
+	path = all-files-convert/src/handlers/code/shiki
+	url = https://github.com/shikijs/shiki.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/highlight.js"]
+	path = all-files-convert/src/handlers/code/highlight.js
+	url = https://github.com/highlightjs/highlight.js.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/prism"]
+	path = all-files-convert/src/handlers/code/prism
+	url = https://github.com/PrismJS/prism.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/mermaid"]
+	path = all-files-convert/src/handlers/code/mermaid
+	url = https://github.com/mermaid-js/mermaid.git
+	shallow = true
+[submodule "all-files-convert/src/handlers/code/viz-js"]
+	path = all-files-convert/src/handlers/code/viz-js
+	url = https://github.com/mdaines/viz-js.git
+	shallow = true

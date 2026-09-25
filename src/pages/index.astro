@@ -1,84 +1,114 @@
 ---
-// Home page modelled on smithed.net: statement hero -> lists of projects -> feature tiles -> banner.
-import Base from '../layouts/Base.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import { getAllProjects } from '../data/projects';
-import { site, typeList, url } from '../data/site';
+// SGOI Tools home page: every tool from shared/sgoi.ts as compact tiles,
+// grouped, with a search box that filters them as you type.
+import SgoiLayout from '../layouts/SgoiLayout.astro';
+import { COMING_SOON, HUB, MENU_ICONS, shownTools, TOOL_GROUPS } from '../../shared/sgoi';
+import { t } from '../i18n/server';
 
-const all = await getAllProjects();
-const featured = all.filter((p) => p.data.featured || p.data.features).slice(0, 6);
-// Repeat the featured list until one group is wider than a large screen (~6 cards), so there is never a gap.
-// Featured slideshow (see .marquee in global.css): full width, right to left, pauses on hover.
-const slides = featured.length
-  ? Array.from({ length: Math.ceil(6 / featured.length) }, () => featured).flat()
-  : [];
-const counts = Object.fromEntries(typeList.map((t) => [t.key, all.filter((p) => p.types.includes(t.key)).length]));
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const letters = [...HUB.short];
+// "Tools" in "SGOI Tools"; the "SGOI" part is drawn as the animated badge
+const nameRest = HUB.suffix;
 ---
-<Base>
-  <section class="hero">
-    <div class="container hero-inner">
-      <img class="hero-logo" src={url('pixelith-icon-512.png')} alt="" width="84" height="84" />
-      <h1>{site.name} is the home for <span>the projects I build and share.</span></h1>
-      <p>Explore games, tools, experiments and creative projects — all made to be useful, enjoyable and easy to try.</p>
-    </div>
+
+<SgoiLayout titleKey="hub.title" descriptionKey="hub.metaDescription">
+  <section class="pt-2 text-center" data-reveal>
+    <h1 class="sgoi-name text-4xl font-extrabold tracking-tight sm:text-5xl">
+      <span class="sr-only">{HUB.name}</span>
+      <span class="sgoi-badge sgoi-badge-xl" aria-hidden="true">{letters.map((c, i) => <i style={`--i:${i}`}>{c}</i>)}</span>
+      <span class="brand-gradient" aria-hidden="true">{nameRest}</span>
+    </h1>
+    <p class="mx-auto mt-3 max-w-xl opacity-70" data-i18n="hub.tagline">{t('hub.tagline')}</p>
+
+    <label class="input hub-search mx-auto mt-6 w-full max-w-md">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" class="opacity-60"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+      <input id="tool-search" type="search" class="grow" autocomplete="off" placeholder={t('hub.search')} data-i18n-attr="placeholder:hub.search" />
+      <kbd class="kbd kbd-sm opacity-60">/</kbd>
+    </label>
   </section>
 
-  <section class="featured-section">
-    {featured.length === 0 ? (
-      <div class="container"><div class="card empty">Mark a project with <code>featured: true</code> to show it here.</div></div>
-    ) : (
-      <div class="marquee" style={`--duration:${Math.max(20, slides.length * 6)}s`}>
-        <div class="marquee-track">
-          <div class="marquee-group">
-            {slides.map((p) => <ProjectCard project={p} showType />)}
+  <div id="tool-groups" class="space-y-8">
+    {TOOL_GROUPS.map((group) => {
+      const icon = MENU_ICONS[group.menu?.at(-1) ?? ''] ?? '';
+      return (
+        <section class="tool-group" data-reveal>
+          <h2 class="mb-3 flex items-center gap-2 text-sm font-bold">
+            {icon && <span class="tool-icon" set:html={icon} />}
+            <span class="soon-label uppercase tracking-widest" data-i18n={`hub.groups.${group.id}`}>{t(`hub.groups.${group.id}`)}</span>
+            <span class="badge badge-sm badge-ghost">{shownTools(group).length}</span>
+          </h2>
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+            {shownTools(group).map((tool) => (
+              <a
+                href={`${base}${tool.path}`}
+                class="tool-tile frost rounded-box group"
+                title={t(`hub.tools.${tool.id}.description`)}
+                data-i18n-attr={`title:hub.tools.${tool.id}.description`}
+                data-search={`${tool.name} ${t(`hub.tools.${tool.id}.blurb`)} ${t(`hub.tools.${tool.id}.description`)}`.toLowerCase()}
+              >
+                <span class="tool-tile-icon" set:html={tool.icon} />
+                <span class="min-w-0 flex-1">
+                  <span class="block truncate font-bold">{tool.name}</span>
+                  <span class="block truncate text-xs opacity-60" data-i18n={`hub.tools.${tool.id}.blurb`}>{t(`hub.tools.${tool.id}.blurb`)}</span>
+                </span>
+                <svg class="tool-tile-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </a>
+            ))}
           </div>
-          {/* Visual-only copy for the seamless loop: `inert` would also block mouse clicks
-              whenever this copy is the one currently scrolled into view, so it's excluded from
-              screen readers and the tab order per-card instead (see `duplicate` in ProjectCard). */}
-          <div class="marquee-group">
-            {slides.map((p) => <ProjectCard project={p} showType duplicate />)}
-          </div>
-        </div>
-      </div>
-    )}
-  </section>
+        </section>
+      );
+    })}
+    <p id="no-results" class="py-6 text-center opacity-60" hidden></p>
+  </div>
 
-  <script>
-    // Browser back/forward can restore focus to the card that opened the detail page.
-    // That focus intentionally pauses the marquee, so clear only the restored focus.
-    window.addEventListener('pageshow', () => {
-      requestAnimationFrame(() => {
-        const active = document.activeElement;
-        if (active instanceof HTMLElement && active.closest('.marquee')) active.blur();
+  <section class="flex flex-wrap items-center justify-center gap-2 text-sm" data-reveal>
+    <span class="soon-label text-xs font-bold uppercase tracking-widest" data-i18n="hub.comingSoon">{t('hub.comingSoon')}</span>
+    {COMING_SOON.map((item) => (
+      <span class="badge badge-ghost gap-1.5 py-3 opacity-70" title={t(`hub.coming.${item.id}.text`)} data-i18n-attr={`title:hub.coming.${item.id}.text`}>
+        <span class="tool-icon" set:html={item.icon} />
+        <span data-i18n={`hub.coming.${item.id}.title`}>{t(`hub.coming.${item.id}.title`)}</span>
+      </span>
+    ))}
+  </section>
+</SgoiLayout>
+
+<script>
+  import { t } from '../scripts/i18n';
+
+  const input = document.getElementById('tool-search') as HTMLInputElement;
+  const empty = document.getElementById('no-results')!;
+
+  function filter() {
+    const words = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+    let shown = 0;
+    document.querySelectorAll<HTMLElement>('.tool-group').forEach((group) => {
+      let inGroup = 0;
+      group.querySelectorAll<HTMLElement>('.tool-tile').forEach((tile) => {
+        const hit = words.every((w) => tile.dataset.search!.includes(w));
+        tile.hidden = !hit;
+        if (hit) inGroup++;
       });
+      group.hidden = inGroup === 0;
+      shown += inGroup;
     });
-  </script>
+    empty.hidden = shown > 0;
+    if (!shown) empty.textContent = t('hub.noResults', { q: input.value.trim() });
+  }
+  input.addEventListener('input', filter);
 
-  <section class="section" style="margin-top:4rem">
-    <div class="container">
-      <h2>Explore by type</h2>
-      <div class="tiles">
-        {typeList.map((t) => (
-          <a class="card tile" href={url(`${t.key}/`)}>
-            <h3>{t.label}</h3>
-            <p>{t.description}</p>
-            <span class="chip accent">{counts[t.key]} project{counts[t.key] === 1 ? '' : 's'}</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="banner">
-        <img src={url('avatar.png')} alt="" width="88" height="88" />
-        <div>
-          <h2 style="margin:0 0 .3rem">Made by SurGamingOnInsulin</h2>
-          <p style="margin:0;color:var(--muted)">Everything here is built and maintained by one person. Read more, or follow along on GitHub.</p>
-        </div>
-        <a class="btn primary" href={url('about/')}>About me</a>
-      </div>
-    </div>
-  </section>
-</Base>
+  // Enter opens the first match; "/" anywhere jumps to the search box.
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.querySelector<HTMLAnchorElement>('.tool-tile:not([hidden])')?.click();
+    if (e.key === 'Escape') {
+      input.value = '';
+      filter();
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    const typing = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement;
+    if (e.key === '/' && !typing) {
+      e.preventDefault();
+      input.focus();
+    }
+  });
+</script>

@@ -1,14 +1,28 @@
 {
-  "name": "pixelith",
+  "name": "youtube-playlist-mp3",
   "type": "module",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "mobs:update": "node scripts/update-minecraft-mobs.mjs"
   },
   "dependencies": {
-    "astro": "^7.3.3"
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.5",
+    "daisyui": "^5.7.44",
+    "motion": "^13.4.3",
+    "tailwindcss": "^4.3.3",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^22.20.4",
+    "@types/three": "^0.186.0",
+    "fflate": "^0.8.3",
+    "typescript": "^6.0.3"
   }
 }

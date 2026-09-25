@@ -1,0 +1,472 @@
+{
+  "_meta": {
+    "code": "en_US",
+    "html": "en",
+    "name": "English",
+    "short": "EN"
+  },
+  "common": {
+    "by": "by {owner}",
+    "madeBy": "Made by",
+    "rights": "Rights Reserved.",
+    "builtWith": "Built with",
+    "theme": "Light / dark theme",
+    "themeToggle": "Toggle light theme",
+    "language": "Language",
+    "switchLanguage": "Switch to {name}",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "open": "Open",
+    "cancel": "Cancel",
+    "save": "Save",
+    "ok": "OK",
+    "clear": "Clear",
+    "remove": "Remove",
+    "tip": "Tip: on a tool page you can paste links or files anywhere with <kbd>Ctrl</kbd> + <kbd>V</kbd>."
+  },
+  "hub": {
+    "title": "SGOI Tools – Free Online Tools, No Ads: YouTube Playlist to MP3, File Converter",
+    "tagline": "Free tools for media, gaming and web development. No ads, no accounts.",
+    "comingSoon": "Coming soon",
+    "soon": "Soon",
+    "groups": {
+      "media": "Media Forge",
+      "minecraft": "Games"
+    },
+    "tools": {
+      "yt-mp3": {
+        "blurb": "Playlists to tagged MP3s",
+        "description": "Drop in any file with YouTube links and get every song of every playlist back as a tagged MP3 with cover art."
+      },
+      "convert": {
+        "blurb": "Any file, any format",
+        "description": "Convert almost any file to almost any other format: images, video, audio, documents and more. Runs on your own device."
+      },
+      "mc-server-info": {
+        "blurb": "Is a server online?",
+        "description": "Ping any Java or Bedrock server by address: online status, players, version, MOTD and icon, as it looks in the game."
+      },
+      "mc-server-icon": {
+        "blurb": "Any image → server-icon.png",
+        "description": "Turn any image into a 64×64 server-icon.png, ready to drop in your server folder, with a live server-list preview."
+      },
+      "mc-server-jars": {
+        "blurb": "Paper, Fabric, Forge and more",
+        "description": "Download server jars for Paper, Purpur, Vanilla, Fabric, Forge, NeoForge, Velocity and more, for any Minecraft version."
+      },
+      "mc-motd": {
+        "blurb": "Colorful server descriptions",
+        "description": "Design a colored, formatted server description with a live preview, then copy it straight into server.properties."
+      },
+      "mc-hub": {
+        "blurb": "Server tools for Minecraft",
+        "description": "Everything for your Minecraft server: status checker, server icons, server jars and MOTDs."
+      }
+    },
+    "coming": {
+      "webDev": {
+        "title": "Web development",
+        "text": "Handy helpers for building websites."
+      },
+      "random": {
+        "title": "Random tools",
+        "text": "Everyday tools, like a music player without ads."
+      }
+    },
+    "metaDescription": "Free online tools by SurGamingOnInsulin: download YouTube playlists as MP3 and convert any file to any format (images, video, audio, documents). No ads, no accounts, no sign-up.",
+    "menu": {
+      "media": "Media Forge",
+      "game": "Games",
+      "minecraft": "Minecraft"
+    },
+    "search": "Search tools…",
+    "noResults": "No tools match “{q}”."
+  },
+  "yt": {
+    "pageTitle": "YouTube Playlist to MP3 Converter – Free, No Ads · SGOI Tools",
+    "tagline": "Whole playlists to tagged MP3s, in one click",
+    "githubRepo": "GitHub repository",
+    "connect": "Connect GitHub",
+    "connection": "GitHub connection",
+    "add": {
+      "title": "Add links",
+      "click": "Click to add a file",
+      "hint": "Drag & Drop — any text file (.txt, .csv, .json, .md, .html, .m3u…)",
+      "or": "or",
+      "paste": "Paste links",
+      "placeholder": "https://www.youtube.com/playlist?list=…\nhttps://youtu.be/…\n\nOne per line, or any text that contains them.",
+      "button": "Add links"
+    },
+    "choose": {
+      "title": "Choose & convert",
+      "all": "All",
+      "empty": "Links you add in step 1 show up here.",
+      "quality": "Quality",
+      "convert": "Convert to MP3",
+      "convertN": {
+        "one": "Convert {n} link to MP3",
+        "other": "Convert {n} links to MP3"
+      },
+      "connectFirst": "Connect GitHub to convert",
+      "starting": "Starting…"
+    },
+    "downloads": {
+      "title": "Downloads",
+      "clearTitle": "Remove finished downloads from the list",
+      "refresh": "Refresh",
+      "empty": "Converted playlists appear here, ready to download as a ZIP."
+    },
+    "how": {
+      "title": "How it works",
+      "addTitle": "Add your links",
+      "addText": "Drop a file or paste text. Every YouTube playlist and video link in it is found and checked.",
+      "convertTitle": "Converted for you",
+      "convertText": "yt-dlp turns every song into an MP3 with title, artist and cover art.",
+      "zipTitle": "Download the ZIP",
+      "zipText": "Each playlist gets its own folder. Download it as soon as it's ready."
+    },
+    "link": {
+      "checking": "Checking…",
+      "playlist": "List",
+      "video": "Video",
+      "private": "Private or doesn’t exist — check the full link",
+      "notFound": "Not found — check the link",
+      "unchecked": "Could not check this link (it will still be sent)"
+    },
+    "run": {
+      "log": "Log ↗",
+      "paused": "Paused",
+      "resume": "Resume",
+      "resumeTitle": "Continue this download",
+      "pause": "Pause",
+      "pauseTitle": "Pause this download; the next one in the list starts",
+      "running": "Running",
+      "queued": "Queued…",
+      "starting": "Starting…",
+      "doneIn": "Done in {time}",
+      "gone": "Done — the files are no longer there",
+      "downloadZip": "Download ZIP",
+      "downloading": "Downloading…",
+      "cancelled": "Cancelled",
+      "failed": "Failed — open the log for details",
+      "retryMissing": "Retry missing",
+      "update": "Update",
+      "updateTitle": "Check against YouTube and download missing or incomplete songs",
+      "removeTitle": "Remove from the list"
+    },
+    "status": {
+      "noLinks": "No YouTube links found in {source}.",
+      "found": {
+        "one": "Found {n} link in {source}.",
+        "other": "Found {n} links in {source}."
+      },
+      "foundDupes": {
+        "one": "Found {n} link in {source} ({dupes} already listed).",
+        "other": "Found {n} links in {source} ({dupes} already listed)."
+      },
+      "pastedBox": "the pasted text",
+      "droppedText": "dropped text",
+      "pastedText": "pasted text",
+      "couldNotRemove": "Could not remove “{name}”: {error}",
+      "ready": "“{name}” is ready to download.",
+      "finished": "“{name}” finished: {result}.",
+      "github": "GitHub: {error}",
+      "nothingToClear": "Nothing to clear — running downloads stay in the list.",
+      "cleared": {
+        "one": "Cleared {n} finished download.",
+        "other": "Cleared {n} finished downloads."
+      },
+      "startingWorkflow": "Starting GitHub Actions workflow…",
+      "startingWorkflowPart": "Starting GitHub Actions workflow ({part}/{total})…",
+      "started": "Started! This usually takes a minute or two per playlist.",
+      "startedNotes": "Started! {notes}. This usually takes a minute or two per playlist.",
+      "couldNotStart": "Could not start: {error}",
+      "noFfmpeg": "ffmpeg was not found on PATH. Install it to convert to MP3.",
+      "error": "{error}"
+    },
+    "settings": {
+      "intro": "The conversion runs as a GitHub Actions workflow in the repository that hosts this page. Everything below is stored only in this browser.",
+      "repo": "Repository",
+      "token": "Access token",
+      "tokenHowTo": "How to create the token",
+      "tokenSteps": "<li>Open <a class=\"link\" href=\"https://github.com/settings/personal-access-tokens/new\" target=\"_blank\" rel=\"noopener\">GitHub → Fine-grained tokens → Generate new token</a>.</li><li><b>Repository access:</b> Only select repositories → this repository.</li><li><b>Permissions:</b> Actions → <b>Read and write</b>. Nothing else is needed.</li><li>Generate, copy it, paste it above.</li>",
+      "cookies": "YouTube cookies (needed to pass YouTube's bot check)",
+      "cookieSteps": "<li>Sign in to YouTube in your browser, ideally with a spare account.</li><li>Export cookies for youtube.com in Netscape format, for example with the “Get cookies.txt LOCALLY” extension.</li><li>In the repository: Settings → Secrets and variables → Actions → New repository secret, named <code>YT_COOKIES</code>, and paste the whole file.</li><li>Refresh the secret when runs start failing with “Sign in to confirm you're not a bot”.</li>",
+      "test": "Test connection",
+      "testing": "Testing…",
+      "connected": "✓ Connected to {repo} and found the Download MP3 workflow.",
+      "failed": "✗ {error}"
+    },
+    "metaDescription": "Free YouTube playlist to MP3 converter. Paste playlist or video links and download every song as a tagged MP3 with cover art, zipped. No ads, no sign-up."
+  },
+  "convert": {
+    "pageTitle": "All Files Convert · SGOI Tools",
+    "tagline": "Any file to any format, right in your browser",
+    "home": "Start over with a new file",
+    "help": "Help",
+    "helpTitle": "Help & info",
+    "simpleMode": "Simple mode",
+    "advancedMode": "Advanced mode",
+    "advancedOnTitle": "Advanced mode is on: every tool that can read or write a format is listed separately",
+    "advancedOffTitle": "Turn on advanced mode to pick which tool handles each format",
+    "footerText": "Convert almost any file to almost any other format. Everything runs on your own device, so your files are never uploaded.",
+    "upload": {
+      "title": "Add files",
+      "private": "Everything stays on your device",
+      "click": "Click to add a file",
+      "tap": "Tap to add a file",
+      "hint": "Drag & Drop — any type of file, or paste it with Ctrl + V",
+      "hintTouch": "Any type of file",
+      "loading": "Getting the converters ready…",
+      "loadingHint": "Loading formats…",
+      "loadFailed": "Could not load formats.",
+      "note": "Pick several files at once to convert them together. They need to be the same type."
+    },
+    "how": {
+      "title": "How it works",
+      "addTitle": "Add your file",
+      "addText": "Click, drop or paste one or more files of the same type. The input format is usually detected for you.",
+      "pickTitle": "Pick a format",
+      "pickText": "Search or filter by category. If there's no direct route, the app chains several tools to get there.",
+      "downloadTitle": "Download",
+      "downloadText": "The result downloads right away. Everything happens on your device, so nothing is uploaded."
+    },
+    "files": {
+      "title": {
+        "one": "Your file",
+        "other": "Your files"
+      },
+      "selected": "{n} selected",
+      "typeUnknown": "type not picked yet",
+      "add": "Add more files",
+      "remove": "Remove file"
+    },
+    "choose": {
+      "fromTitle": "What type of file is this?",
+      "fromSub": "Pick the format your file is in, then press Next.",
+      "toTitle": "What should it become?",
+      "toSub": "Pick an output format, then press Convert.",
+      "back": "Change input format",
+      "next": "Next",
+      "convert": "Convert",
+      "convertTo": "Convert to {format}",
+      "search": "Search formats...",
+      "count": {
+        "one": "{n} format",
+        "other": "{n} formats"
+      },
+      "noResults": "No formats found",
+      "clearFilters": "Clear filters",
+      "inputCount": {
+        "one": "{n} input format",
+        "other": "{n} input formats"
+      },
+      "outputCount": {
+        "one": "{n} output format",
+        "other": "{n} output formats"
+      },
+      "selectedInput": "Selected input format: {format}",
+      "selectedOutput": "Selected output format: {format}",
+      "convertedBy": "Converted by {tool}"
+    },
+    "categories": {
+      "image": "Image",
+      "video": "Video",
+      "audio": "Audio",
+      "document": "Document",
+      "archive": "Archive",
+      "text": "Text",
+      "code": "Code",
+      "data": "Data",
+      "vector": "Vector",
+      "spreadsheet": "Spreadsheet",
+      "font": "Font"
+    },
+    "converting": {
+      "title": "Converting",
+      "sub": "Your download starts automatically when it's done",
+      "finding": "Finding conversion route...",
+      "cancel": "Cancel",
+      "cancelTitle": "Cancel conversion"
+    },
+    "drop": {
+      "title": "Drop to upload",
+      "subtitle": "Release to convert your file"
+    },
+    "popup": {
+      "invalidTitle": "Invalid selection",
+      "invalidText": "All input files must be of the same type.",
+      "failedTitle": "Conversion failed",
+      "failedText": "Could not find a valid conversion route between these formats.",
+      "doneTitle": "Conversion complete!",
+      "doneText": "Converted {from} → {to} via {path}",
+      "errorTitle": "Conversion error",
+      "errorText": "An unexpected error occurred: {error}",
+      "gotIt": "Got it"
+    },
+    "helpPopup": {
+      "subtitle": "Truly universal on-device file converter.",
+      "whyTitle": "Why use this?",
+      "why1": "Most online converters require uploading your files to some server, which is terrible for privacy. This app runs entirely in your browser. Your files never leave your device.",
+      "why2": "Other tools also force you to stay within one medium, which is super lame. What if you <i>really</i> need to convert an AVI video to a PDF document? Try to find an online tool for that, I dare you.",
+      "howTitle": "How to use",
+      "how1": "Select your file(s) by clicking, pasting, or dragging-and-dropping.",
+      "how2": "Confirm the input format (usually auto-detected).",
+      "how3": "Choose your desired output format.",
+      "how4": "Click <strong>Convert</strong> and wait for the result.",
+      "advancedTitle": "Advanced mode",
+      "advancedText": "Advanced mode lets you select which handler to use for each format. Use it when you need fine-grained control over which tool handles the conversion."
+    }
+  },
+  "mc": {
+    "common": {
+      "copy": "Copy",
+      "copied": "Copied!"
+    },
+    "card": {
+      "defaultName": "Minecraft Server",
+      "defaultMotd": "A Minecraft Server"
+    },
+    "info": {
+      "pageTitle": "Minecraft Server Status Checker – Online, Players, MOTD · SGOI Tools",
+      "metaDescription": "Check if a Minecraft Java or Bedrock server is online. See players, version, MOTD and server icon exactly like the in-game server list. Free, no ads.",
+      "title": "Server Info",
+      "tagline": "Ping an address to get live server data.",
+      "placeholder": "Enter server address…",
+      "check": "Check",
+      "pinging": "Pinging {address}…",
+      "online": "Online · checked at {time}",
+      "offline": "Can’t connect to server",
+      "offlineStatus": "{address} is offline or does not exist.",
+      "invalid": "Enter a server address, like play.example.com or play.example.com:25565.",
+      "apiError": "The status service could not be reached. Check your connection and try again.",
+      "statusOnline": "Online",
+      "statusOffline": "Offline",
+      "eulaBlocked": "Blocked by Mojang (EULA)",
+      "playersOnline": "Players online",
+      "mods": {
+        "one": "{n} mod",
+        "other": "{n} mods"
+      },
+      "plugins": {
+        "one": "{n} plugin",
+        "other": "{n} plugins"
+      },
+      "share": "Shareable link",
+      "fact": {
+        "status": "Status",
+        "address": "Address",
+        "ip": "IP address",
+        "srv": "SRV record",
+        "version": "Version",
+        "protocol": "Protocol",
+        "players": "Players",
+        "software": "Software",
+        "gamemode": "Game mode",
+        "edition": "Edition",
+        "eula": "Note"
+      }
+    },
+    "icon": {
+      "pageTitle": "Minecraft Server Icon Converter – server-icon.png Maker · SGOI Tools",
+      "metaDescription": "Turn any image into a 64×64 server-icon.png for your Minecraft server, with a live server-list preview. Runs in your browser, nothing is uploaded.",
+      "title": "Server Icon Converter",
+      "tagline": "Resize and rename any image as a server icon.",
+      "upload": "Upload, drop or paste an image",
+      "hint": "PNG, JPG, GIF, WebP, SVG… Nothing is uploaded.",
+      "pasted": "Pasted image",
+      "notImage": "That is not an image. Try a PNG, JPG, GIF or WebP.",
+      "decodeError": "This image could not be opened by your browser.",
+      "fit": "Fit",
+      "fitCover": "Crop to a square",
+      "fitContain": "Fit inside (transparent edges)",
+      "fitStretch": "Stretch",
+      "scaling": "Scaling",
+      "smooth": "Smooth (photos)",
+      "pixel": "Sharp pixels (pixel art)",
+      "preview": "Preview",
+      "previewNote": "Resized to 64×64 and renamed to server-icon.png.",
+      "download": "Download",
+      "howTo": "Put <code>server-icon.png</code> in your server folder, next to <code>server.properties</code>, and restart the server."
+    },
+    "jars": {
+      "pageTitle": "Minecraft Server Jar Downloads – Paper, Fabric, Forge & more · SGOI Tools",
+      "metaDescription": "Download Minecraft server jars for Paper, Purpur, Pufferfish, Vanilla, Folia, Velocity, Fabric, NeoForge, Quilt, Forge and more, for every version.",
+      "title": "Server Jars",
+      "tagline": "Download jar files for popular server software.",
+      "type": "Type",
+      "version": "Version",
+      "download": "Download",
+      "loading": "Loading…",
+      "error": "The version list could not be loaded. Try again in a moment.",
+      "empty": "No builds found for this type.",
+      "count": {
+        "one": "{n} version",
+        "other": "{n} versions"
+      },
+      "snapshots": "Show snapshots",
+      "mcVersion": "Minecraft Version",
+      "build": "Build",
+      "java": "Java",
+      "released": "Release Date",
+      "buildsOf": {
+        "one": "{name}",
+        "other": "{name} · all {n} builds"
+      },
+      "deprecated": "Deprecated",
+      "experimental": "Experimental",
+      "unsupported": "unsupported",
+      "zipNote": "This server comes as a .zip with everything already installed: unzip it and start the server from the unzipped folder.",
+      "source": "Build data from <a class=\"link\" href=\"https://mcjars.app\" target=\"_blank\" rel=\"noopener\">MCJars</a>. Downloads come straight from each project.",
+      "groups": {
+        "popular": "Popular",
+        "recommended": "Recommended",
+        "established": "Established",
+        "experimental": "Experimental",
+        "miscellaneous": "Other",
+        "limbos": "Limbo servers"
+      }
+    },
+    "motd": {
+      "pageTitle": "Minecraft MOTD Creator – Colors, Gradients & Preview · SGOI Tools",
+      "metaDescription": "Create a colorful Minecraft server MOTD with color codes, formatting and gradients. Live server-list preview; copy for server.properties, plugins or MiniMessage.",
+      "title": "MOTD Creator",
+      "tagline": "Design the description players see in their server list.",
+      "name": "Server name (preview only)",
+      "line1": "Line 1",
+      "line2": "Line 2",
+      "center": "Center",
+      "example": "Example",
+      "gradient": "Gradient",
+      "applyGradient": "Apply to selection",
+      "gradientHint": "Select text in a line first (or nothing, for the whole line).",
+      "hint": "Type <kbd>&amp;</kbd> codes yourself or click a color: <code>&amp;a</code> green, <code>&amp;l</code> bold, <code>&amp;r</code> reset. A color resets bold and italic, so add them after the color.",
+      "fmt": {
+        "bold": "Bold",
+        "italic": "Italic",
+        "underline": "Underline",
+        "strike": "Strikethrough",
+        "obfuscated": "Obfuscated (random letters)",
+        "reset": "Reset"
+      },
+      "outProps": "server.properties",
+      "outPropsHint": "Replace the motd= line in server.properties, then restart.",
+      "outAmp": "Plugins (& codes)",
+      "outAmpHint": "For MOTD plugins, EssentialsX and most config files.",
+      "outMini": "MiniMessage",
+      "outMiniHint": "For Velocity (velocity.toml) and Paper plugins that use MiniMessage.",
+      "hexNote": "Gradients and custom colors need a plugin or Velocity: server.properties only knows the 16 standard colors, so the nearest ones are used there."
+    },
+    "hub": {
+      "pageTitle": "Minecraft Server Tools – Status, Icons, Jars & MOTD · SGOI Tools",
+      "metaDescription": "Free Minecraft server tools: check if a server is online, make a server-icon.png, download server jars and design a colorful MOTD. No ads.",
+      "title": "Minecraft",
+      "tagline": "Free tools for your Minecraft server: check it, style it and set it up.",
+      "replay": "Click the creeper to see it again",
+      "hint": "Psst… click the creeper.",
+      "credit": "Sounds © Mojang, via <a class=\"link\" href=\"https://mcasset.cloud\" target=\"_blank\" rel=\"noopener\">mcasset.cloud</a>. Not an official Minecraft product; not approved by or associated with Mojang or Microsoft.",
+      "huh": "Huh?",
+      "ahh": "Ahhhh!"
+    }
+  }
+}

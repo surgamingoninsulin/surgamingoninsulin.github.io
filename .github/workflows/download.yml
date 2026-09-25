@@ -1,0 +1,142 @@
+name: Download MP3
+run-name: "MP3 · ${{ inputs.label || 'manual' }} · ${{ inputs.request_id || github.run_number }}"
+
+# Triggered by the website (via the GitHub API) or by hand from the Actions tab.
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: YouTube playlist / video URLs, separated by spaces or new lines
+        required: true
+      bitrate:
+        description: MP3 bitrate in kbps
+        default: "192"
+        type: choice
+        options: ["128", "192", "256", "320"]
+      label:
+        description: Short name shown in the run list
+        required: false
+      request_id:
+        description: Used by the website to find this run
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: yt-dlp.conf
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # yt-dlp needs a JavaScript runtime to solve YouTube's player challenges.
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Install yt-dlp and ffmpeg
+        run: |
+          python -m pip install --upgrade "yt-dlp[default]"
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+          yt-dlp --version
+
+      - name: Prepare inputs
+        env:
+          URLS: ${{ inputs.urls }}
+          BITRATE: ${{ inputs.bitrate }}
+          YT_COOKIES: ${{ secrets.YT_COOKIES }}
+        run: |
+          # Only accept YouTube links, one per line.
+          printf '%s\n' "$URLS" | tr ' \t,;' '\n\n\n\n' \
+            | grep -E '^https://((www|m|music)\.)?(youtube\.com|youtu\.be)/' \
+            | sort -u > urls.txt || true
+          if [ ! -s urls.txt ]; then
+            echo "::error::No valid YouTube URLs were given."
+            exit 1
+          fi
+          echo "Links to download:"; cat urls.txt
+
+          case "$BITRATE" in 128|192|256|320) ;; *) BITRATE=192 ;; esac
+          echo "BITRATE=$BITRATE" >> "$GITHUB_ENV"
+
+          if [ -n "$YT_COOKIES" ]; then
+            printf '%s\n' "$YT_COOKIES" > cookies.txt
+            echo "COOKIE_ARGS=--cookies cookies.txt" >> "$GITHUB_ENV"
+          else
+            echo "::warning::No YT_COOKIES secret set. YouTube usually blocks GitHub's servers without it."
+          fi
+
+      - name: Download and convert
+        run: |
+          mkdir -p out
+          touch archive.txt
+          set +e
+          # Shared options live in yt-dlp.conf (also used by local debug mode).
+          # When YouTube refuses songs (bot check / rate limit), the missing ones
+          # are retried with pauses; archive.txt makes finished songs be skipped.
+          waits=(60 180 600)
+          extra=()
+          for round in 0 1 2 3; do
+            [ "$round" -gt 0 ] && echo "::group::Retry round $round"
+            yt-dlp --config-locations yt-dlp.conf $COOKIE_ARGS "${extra[@]}" \
+              --batch-file urls.txt \
+              --download-archive archive.txt \
+              --audio-quality "${BITRATE}K" \
+              --paths out \
+              2>&1 | tee round.log
+            cat round.log >> yt-dlp.log
+            [ "$round" -gt 0 ] && echo "::endgroup::"
+
+            # songs that failed this round and are still not in the archive
+            # (private / removed / members-only songs can never succeed, so they are not retried)
+            grep -E '^ERROR: \[youtube\] [A-Za-z0-9_-]{11}:' round.log \
+              | grep -viE 'private video|video unavailable|has been removed|terminated|members[- ]only|join this channel|not available in your country|copyright|age[- ]restricted|confirm your age' \
+              | grep -oE '^ERROR: \[youtube\] [A-Za-z0-9_-]{11}:' | cut -d' ' -f3 | tr -d ':' | sort -u > failed.txt
+            awk '{print $2}' archive.txt | sort -u > done.txt
+            missing=$(comm -23 failed.txt done.txt | wc -l)
+            [ "$missing" -eq 0 ] && break
+            [ "$round" -eq 3 ] && break
+            echo "::warning::YouTube refused $missing song(s). Retrying in ${waits[$round]}s (round $((round + 1))/3)."
+            sleep "${waits[$round]}"
+            extra=(--sleep-requests 3 --sleep-interval 8 --max-sleep-interval 20)
+          done
+          set -e
+          rm -f cookies.txt
+
+          # Keep only finished MP3s (drops leftover covers, .temp/.part files, empty folders).
+          find out -type f \( ! -name '*.mp3' -o -name '*.temp.mp3' \) -delete
+          find out -mindepth 1 -type d -empty -delete
+
+          count=$(find out -name '*.mp3' | wc -l)
+          {
+            echo "## 🎵 $count MP3 file(s) ready"
+            [ "$missing" -gt 0 ] && echo "⚠️ $missing song(s) are still missing after 3 retry rounds — YouTube refused them (see the log)."
+            echo
+            find out -name '*.mp3' -printf '%P\n' | sort | sed 's/^/- /'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$count" -eq 0 ]; then
+            if grep -q "confirm you.re not a bot\|Sign in to confirm" yt-dlp.log; then
+              echo "::error::YouTube blocked the download (bot check). Add or refresh the YT_COOKIES secret."
+            else
+              echo "::error::Nothing was downloaded."
+            fi
+            exit 1
+          fi
+
+      - name: Upload MP3s
+        uses: actions/upload-artifact@v4
+        with:
+          name: mp3-${{ inputs.request_id || github.run_number }}
+          path: out
+          retention-days: 1
+          compression-level: 0

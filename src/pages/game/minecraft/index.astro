@@ -1,0 +1,62 @@
+---
+// The Minecraft page: all Minecraft tools, like the home page but only these.
+// Opening it plays the creeper easter egg (src/scripts/minecraft/creeper.ts).
+import SgoiLayout from '../../../layouts/SgoiLayout.astro';
+import McBrand from '../../../components/McBrand.astro';
+import '../../../styles/minecraft.css';
+import { TOOL_GROUPS } from '../../../../shared/sgoi';
+import { t } from '../../../i18n/server';
+import { creeperSvg } from '../../../scripts/minecraft/creeper';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const tools = TOOL_GROUPS.find((g) => g.hub?.id === 'mc-hub')!.tools;
+---
+
+<SgoiLayout titleKey="mc.hub.pageTitle" descriptionKey="mc.hub.metaDescription" active="mc-hub" texts={['mc']}>
+  <McBrand slot="brand" tool="mc-hub" keys="mc.hub" sub="hub.groups.minecraft" />
+
+  <section class="flex flex-col items-center gap-4 pt-2 text-center" data-reveal>
+    <button id="creeper" type="button" class="creeper-button" title={t('mc.hub.replay')} data-i18n-attr="title:mc.hub.replay;aria-label:mc.hub.replay" aria-label={t('mc.hub.replay')} set:html={creeperSvg(64)} />
+    <div>
+      <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl" data-i18n="mc.hub.title">{t('mc.hub.title')}</h1>
+      <p class="mx-auto mt-2 max-w-xl opacity-70" data-i18n="mc.hub.tagline">{t('mc.hub.tagline')}</p>
+    </div>
+  </section>
+
+  <section class="mx-auto grid w-full max-w-4xl gap-3 sm:grid-cols-2" data-reveal>
+    {tools.map((tool) => (
+      <a href={`${base}${tool.path}`} class="tool-tile frost rounded-box group items-start">
+        <span class="tool-tile-icon" set:html={tool.icon} />
+        <span class="min-w-0 flex-1">
+          <span class="block font-bold">{tool.name}</span>
+          <span class="mt-0.5 block text-sm opacity-70" data-i18n={`hub.tools.${tool.id}.description`}>{t(`hub.tools.${tool.id}.description`)}</span>
+        </span>
+        <svg class="tool-tile-arrow mt-1" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+      </a>
+    ))}
+  </section>
+
+  <p class="text-center text-xs opacity-50">
+    <span data-i18n="mc.hub.hint">{t('mc.hub.hint')}</span><br />
+    <span data-i18n-html="mc.hub.credit" set:html={t('mc.hub.credit')} />
+  </p>
+</SgoiLayout>
+
+<script>
+  import { t } from '../../../scripts/i18n';
+  import { initLook } from '../../../scripts/minecraft/mc';
+  import { playCreeper } from '../../../scripts/minecraft/creeper';
+
+  initLook(); // Minecraft font for the villager's speech bubble
+
+  const play = (mob?: 'creeper' | 'villager') =>
+    playCreeper(document.querySelector<HTMLElement>('.drawer-content'), { huh: t('mc.hub.huh'), ahh: t('mc.hub.ahh') }, mob);
+  document.getElementById('creeper')?.addEventListener('click', () => play());
+  // Secret: the pickaxe in the header calls the villager.
+  document.querySelector('.site-header .tool-card-icon')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    play('villager');
+  });
+  // Like Google's easter eggs: it plays as soon as you arrive.
+  setTimeout(() => play(), 500);
+</script>

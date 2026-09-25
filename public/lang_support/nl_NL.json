@@ -1,0 +1,472 @@
+{
+  "_meta": {
+    "code": "nl_NL",
+    "html": "nl",
+    "name": "Nederlands",
+    "short": "NL"
+  },
+  "common": {
+    "by": "door {owner}",
+    "madeBy": "Gemaakt door",
+    "rights": "Alle rechten voorbehouden.",
+    "builtWith": "Gemaakt met",
+    "theme": "Licht / donker thema",
+    "themeToggle": "Licht thema aan/uit",
+    "language": "Taal",
+    "switchLanguage": "Wissel naar {name}",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "open": "Openen",
+    "cancel": "Annuleren",
+    "save": "Opslaan",
+    "ok": "OK",
+    "clear": "Wissen",
+    "remove": "Verwijderen",
+    "tip": "Tip: op een toolpagina kun je links of bestanden overal plakken met <kbd>Ctrl</kbd> + <kbd>V</kbd>."
+  },
+  "hub": {
+    "title": "SGOI Tools – Gratis online tools zonder reclame: YouTube-playlist naar MP3, bestandsconverter",
+    "tagline": "Gratis tools voor media, gaming en webontwikkeling. Geen advertenties, geen accounts.",
+    "comingSoon": "Binnenkort",
+    "soon": "Binnenkort",
+    "groups": {
+      "media": "Media Forge",
+      "minecraft": "Games"
+    },
+    "tools": {
+      "yt-mp3": {
+        "blurb": "Playlists naar getagde MP3's",
+        "description": "Zet een bestand met YouTube-links neer en krijg elk nummer van elke playlist terug als getagde MP3 met albumhoes."
+      },
+      "convert": {
+        "blurb": "Elk bestand, elk formaat",
+        "description": "Zet bijna elk bestand om naar bijna elk ander formaat: afbeeldingen, video, audio, documenten en meer. Draait op je eigen apparaat."
+      },
+      "mc-server-info": {
+        "blurb": "Is een server online?",
+        "description": "Ping elke Java- of Bedrock-server op adres: online status, spelers, versie, MOTD en icoon, zoals in het spel."
+      },
+      "mc-server-icon": {
+        "blurb": "Elke afbeelding → server-icon.png",
+        "description": "Maak van elke afbeelding een server-icon.png van 64×64, klaar voor je servermap, met een live voorbeeld uit de serverlijst."
+      },
+      "mc-server-jars": {
+        "blurb": "Paper, Fabric, Forge en meer",
+        "description": "Download server-jars voor Paper, Purpur, Vanilla, Fabric, Forge, NeoForge, Velocity en meer, voor elke Minecraft-versie."
+      },
+      "mc-motd": {
+        "blurb": "Kleurrijke serverbeschrijvingen",
+        "description": "Ontwerp een gekleurde serverbeschrijving met live voorbeeld en kopieer hem zo naar server.properties."
+      },
+      "mc-hub": {
+        "blurb": "Servertools voor Minecraft",
+        "description": "Alles voor je Minecraft-server: statuscheck, servericonen, server-jars en MOTD’s."
+      }
+    },
+    "coming": {
+      "webDev": {
+        "title": "Webontwikkeling",
+        "text": "Handige hulpmiddelen voor het bouwen van websites."
+      },
+      "random": {
+        "title": "Handige tools",
+        "text": "Tools voor elke dag, zoals een muziekspeler zonder advertenties."
+      }
+    },
+    "metaDescription": "Gratis online tools van SurGamingOnInsulin: YouTube-playlists downloaden als MP3 en elk bestand naar elk formaat omzetten (afbeeldingen, video, audio, documenten). Geen reclame, geen account.",
+    "menu": {
+      "media": "Media Forge",
+      "game": "Games",
+      "minecraft": "Minecraft"
+    },
+    "search": "Zoek een tool…",
+    "noResults": "Geen tools gevonden voor “{q}”."
+  },
+  "yt": {
+    "pageTitle": "YouTube-playlist naar MP3 converter – gratis, zonder reclame · SGOI Tools",
+    "tagline": "Hele playlists naar getagde MP3's, in één klik",
+    "githubRepo": "GitHub-repository",
+    "connect": "GitHub koppelen",
+    "connection": "GitHub-koppeling",
+    "add": {
+      "title": "Links toevoegen",
+      "click": "Klik om een bestand toe te voegen",
+      "hint": "Slepen & neerzetten — elk tekstbestand (.txt, .csv, .json, .md, .html, .m3u…)",
+      "or": "of",
+      "paste": "Links plakken",
+      "placeholder": "https://www.youtube.com/playlist?list=…\nhttps://youtu.be/…\n\nEén per regel, of een tekst waar ze in staan.",
+      "button": "Links toevoegen"
+    },
+    "choose": {
+      "title": "Kiezen & omzetten",
+      "all": "Alles",
+      "empty": "Links die je in stap 1 toevoegt verschijnen hier.",
+      "quality": "Kwaliteit",
+      "convert": "Omzetten naar MP3",
+      "convertN": {
+        "one": "{n} link omzetten naar MP3",
+        "other": "{n} links omzetten naar MP3"
+      },
+      "connectFirst": "Koppel GitHub om om te zetten",
+      "starting": "Bezig met starten…"
+    },
+    "downloads": {
+      "title": "Downloads",
+      "clearTitle": "Klaar downloads uit de lijst halen",
+      "refresh": "Vernieuwen",
+      "empty": "Omgezette playlists verschijnen hier, klaar om als ZIP te downloaden."
+    },
+    "how": {
+      "title": "Zo werkt het",
+      "addTitle": "Voeg je links toe",
+      "addText": "Zet een bestand neer of plak tekst. Elke YouTube-playlist en -videolink erin wordt gevonden en gecontroleerd.",
+      "convertTitle": "Voor je omgezet",
+      "convertText": "yt-dlp maakt van elk nummer een MP3 met titel, artiest en albumhoes.",
+      "zipTitle": "Download de ZIP",
+      "zipText": "Elke playlist krijgt een eigen map. Download hem zodra hij klaar is."
+    },
+    "link": {
+      "checking": "Controleren…",
+      "playlist": "Lijst",
+      "video": "Video",
+      "private": "Privé of bestaat niet — controleer de volledige link",
+      "notFound": "Niet gevonden — controleer de link",
+      "unchecked": "Kon deze link niet controleren (hij wordt toch verstuurd)"
+    },
+    "run": {
+      "log": "Log ↗",
+      "paused": "Gepauzeerd",
+      "resume": "Hervatten",
+      "resumeTitle": "Deze download verder laten gaan",
+      "pause": "Pauzeren",
+      "pauseTitle": "Deze download pauzeren; de volgende in de lijst start",
+      "running": "Bezig",
+      "queued": "In de wachtrij…",
+      "starting": "Bezig met starten…",
+      "doneIn": "Klaar in {time}",
+      "gone": "Klaar — de bestanden zijn er niet meer",
+      "downloadZip": "ZIP downloaden",
+      "downloading": "Downloaden…",
+      "cancelled": "Geannuleerd",
+      "failed": "Mislukt — open het log voor details",
+      "retryMissing": "Ontbrekende opnieuw",
+      "update": "Bijwerken",
+      "updateTitle": "Vergelijk met YouTube en download ontbrekende of onvolledige nummers",
+      "removeTitle": "Uit de lijst halen"
+    },
+    "status": {
+      "noLinks": "Geen YouTube-links gevonden in {source}.",
+      "found": {
+        "one": "{n} link gevonden in {source}.",
+        "other": "{n} links gevonden in {source}."
+      },
+      "foundDupes": {
+        "one": "{n} link gevonden in {source} ({dupes} stond(en) al in de lijst).",
+        "other": "{n} links gevonden in {source} ({dupes} stond(en) al in de lijst)."
+      },
+      "pastedBox": "de geplakte tekst",
+      "droppedText": "neergezette tekst",
+      "pastedText": "geplakte tekst",
+      "couldNotRemove": "Kon “{name}” niet verwijderen: {error}",
+      "ready": "“{name}” is klaar om te downloaden.",
+      "finished": "“{name}” is gestopt: {result}.",
+      "github": "GitHub: {error}",
+      "nothingToClear": "Niets om te wissen — lopende downloads blijven in de lijst.",
+      "cleared": {
+        "one": "{n} klare download gewist.",
+        "other": "{n} klare downloads gewist."
+      },
+      "startingWorkflow": "GitHub Actions-workflow starten…",
+      "startingWorkflowPart": "GitHub Actions-workflow starten ({part}/{total})…",
+      "started": "Gestart! Dit duurt meestal een minuut of twee per playlist.",
+      "startedNotes": "Gestart! {notes}. Dit duurt meestal een minuut of twee per playlist.",
+      "couldNotStart": "Kon niet starten: {error}",
+      "noFfmpeg": "ffmpeg is niet gevonden op PATH. Installeer het om naar MP3 om te zetten.",
+      "error": "{error}"
+    },
+    "settings": {
+      "intro": "Het omzetten gebeurt in een GitHub Actions-workflow in de repository waar deze pagina op staat. Alles hieronder wordt alleen in deze browser bewaard.",
+      "repo": "Repository",
+      "token": "Toegangstoken",
+      "tokenHowTo": "Zo maak je het token",
+      "tokenSteps": "<li>Open <a class=\"link\" href=\"https://github.com/settings/personal-access-tokens/new\" target=\"_blank\" rel=\"noopener\">GitHub → Fine-grained tokens → Generate new token</a>.</li><li><b>Repository access:</b> Only select repositories → deze repository.</li><li><b>Permissions:</b> Actions → <b>Read and write</b>. Meer is niet nodig.</li><li>Genereer het, kopieer het en plak het hierboven.</li>",
+      "cookies": "YouTube-cookies (nodig om langs de botcontrole van YouTube te komen)",
+      "cookieSteps": "<li>Log in bij YouTube in je browser, het liefst met een reserve-account.</li><li>Exporteer de cookies van youtube.com in Netscape-formaat, bijvoorbeeld met de extensie “Get cookies.txt LOCALLY”.</li><li>In de repository: Settings → Secrets and variables → Actions → New repository secret, met de naam <code>YT_COOKIES</code>, en plak het hele bestand.</li><li>Vernieuw het secret als runs gaan mislukken met “Sign in to confirm you're not a bot”.</li>",
+      "test": "Koppeling testen",
+      "testing": "Testen…",
+      "connected": "✓ Gekoppeld aan {repo} en de Download MP3-workflow is gevonden.",
+      "failed": "✗ {error}"
+    },
+    "metaDescription": "Gratis YouTube-playlist naar MP3 converter. Plak playlist- of videolinks en download elk nummer als MP3 met tags en albumhoes, in een ZIP. Geen reclame, geen account."
+  },
+  "convert": {
+    "pageTitle": "All Files Convert · SGOI Tools",
+    "tagline": "Elk bestand naar elk formaat, gewoon in je browser",
+    "home": "Opnieuw beginnen met een ander bestand",
+    "help": "Help",
+    "helpTitle": "Help & info",
+    "simpleMode": "Eenvoudige modus",
+    "advancedMode": "Geavanceerde modus",
+    "advancedOnTitle": "Geavanceerde modus staat aan: elke tool die een formaat kan lezen of schrijven staat er apart in",
+    "advancedOffTitle": "Zet geavanceerde modus aan om per formaat de tool te kiezen",
+    "footerText": "Zet bijna elk bestand om naar bijna elk ander formaat. Alles draait op je eigen apparaat, dus je bestanden worden nooit geüpload.",
+    "upload": {
+      "title": "Bestanden toevoegen",
+      "private": "Alles blijft op je apparaat",
+      "click": "Klik om een bestand toe te voegen",
+      "tap": "Tik om een bestand toe te voegen",
+      "hint": "Slepen & neerzetten — elk soort bestand, of plak het met Ctrl + V",
+      "hintTouch": "Elk soort bestand",
+      "loading": "De converters worden klaargezet…",
+      "loadingHint": "Formaten laden…",
+      "loadFailed": "Kon de formaten niet laden.",
+      "note": "Kies meerdere bestanden tegelijk om ze samen om te zetten. Ze moeten van hetzelfde type zijn."
+    },
+    "how": {
+      "title": "Zo werkt het",
+      "addTitle": "Voeg je bestand toe",
+      "addText": "Klik, sleep of plak een of meer bestanden van hetzelfde type. Het invoerformaat wordt meestal voor je herkend.",
+      "pickTitle": "Kies een formaat",
+      "pickText": "Zoek of filter op categorie. Is er geen directe route, dan koppelt de app meerdere tools aan elkaar.",
+      "downloadTitle": "Downloaden",
+      "downloadText": "Het resultaat wordt meteen gedownload. Alles gebeurt op je apparaat, er wordt niets geüpload."
+    },
+    "files": {
+      "title": {
+        "one": "Je bestand",
+        "other": "Je bestanden"
+      },
+      "selected": "{n} gekozen",
+      "typeUnknown": "type nog niet gekozen",
+      "add": "Meer bestanden toevoegen",
+      "remove": "Bestand verwijderen"
+    },
+    "choose": {
+      "fromTitle": "Wat voor bestand is dit?",
+      "fromSub": "Kies het formaat van je bestand en druk op Volgende.",
+      "toTitle": "Waar moet het naartoe?",
+      "toSub": "Kies een uitvoerformaat en druk op Omzetten.",
+      "back": "Invoerformaat wijzigen",
+      "next": "Volgende",
+      "convert": "Omzetten",
+      "convertTo": "Omzetten naar {format}",
+      "search": "Formaten zoeken...",
+      "count": {
+        "one": "{n} formaat",
+        "other": "{n} formaten"
+      },
+      "noResults": "Geen formaten gevonden",
+      "clearFilters": "Filters wissen",
+      "inputCount": {
+        "one": "{n} invoerformaat",
+        "other": "{n} invoerformaten"
+      },
+      "outputCount": {
+        "one": "{n} uitvoerformaat",
+        "other": "{n} uitvoerformaten"
+      },
+      "selectedInput": "Gekozen invoerformaat: {format}",
+      "selectedOutput": "Gekozen uitvoerformaat: {format}",
+      "convertedBy": "Omgezet door {tool}"
+    },
+    "categories": {
+      "image": "Afbeelding",
+      "video": "Video",
+      "audio": "Audio",
+      "document": "Document",
+      "archive": "Archief",
+      "text": "Tekst",
+      "code": "Code",
+      "data": "Data",
+      "vector": "Vector",
+      "spreadsheet": "Spreadsheet",
+      "font": "Lettertype"
+    },
+    "converting": {
+      "title": "Bezig met omzetten",
+      "sub": "Je download start vanzelf als het klaar is",
+      "finding": "Conversieroute zoeken...",
+      "cancel": "Annuleren",
+      "cancelTitle": "Omzetten annuleren"
+    },
+    "drop": {
+      "title": "Neerzetten om te uploaden",
+      "subtitle": "Laat los om je bestand om te zetten"
+    },
+    "popup": {
+      "invalidTitle": "Ongeldige keuze",
+      "invalidText": "Alle invoerbestanden moeten van hetzelfde type zijn.",
+      "failedTitle": "Omzetten mislukt",
+      "failedText": "Er is geen geldige conversieroute tussen deze formaten gevonden.",
+      "doneTitle": "Omzetten klaar!",
+      "doneText": "{from} → {to} omgezet via {path}",
+      "errorTitle": "Fout bij omzetten",
+      "errorText": "Er ging onverwacht iets mis: {error}",
+      "gotIt": "Begrepen"
+    },
+    "helpPopup": {
+      "subtitle": "Echt universele bestandsconverter die op je eigen apparaat draait.",
+      "whyTitle": "Waarom deze tool?",
+      "why1": "De meeste online converters laten je bestanden uploaden naar een server, en dat is slecht voor je privacy. Deze app draait helemaal in je browser. Je bestanden verlaten je apparaat nooit.",
+      "why2": "Andere tools houden je ook vast binnen één soort bestand, en dat is superflauw. Wat als je <i>echt</i> een AVI-video naar een PDF-document moet omzetten? Zoek daar maar eens een online tool voor.",
+      "howTitle": "Zo gebruik je het",
+      "how1": "Kies je bestand(en) door te klikken, te plakken of te slepen.",
+      "how2": "Bevestig het invoerformaat (meestal automatisch herkend).",
+      "how3": "Kies het uitvoerformaat dat je wilt.",
+      "how4": "Klik op <strong>Omzetten</strong> en wacht op het resultaat.",
+      "advancedTitle": "Geavanceerde modus",
+      "advancedText": "In de geavanceerde modus kies je zelf welke tool elk formaat verwerkt. Handig als je precies wilt bepalen welke tool het omzetten doet."
+    }
+  },
+  "mc": {
+    "common": {
+      "copy": "Kopiëren",
+      "copied": "Gekopieerd!"
+    },
+    "card": {
+      "defaultName": "Minecraft Server",
+      "defaultMotd": "Een Minecraft-server"
+    },
+    "info": {
+      "pageTitle": "Minecraft Server Status – Online, Spelers, MOTD · SGOI Tools",
+      "metaDescription": "Bekijk of een Minecraft Java- of Bedrock-server online is. Zie spelers, versie, MOTD en servericoon precies zoals in de serverlijst. Gratis, zonder reclame.",
+      "title": "Serverinfo",
+      "tagline": "Ping een adres voor live servergegevens.",
+      "placeholder": "Voer een serveradres in…",
+      "check": "Controleren",
+      "pinging": "{address} pingen…",
+      "online": "Online · gecontroleerd om {time}",
+      "offline": "Kan geen verbinding maken met de server",
+      "offlineStatus": "{address} is offline of bestaat niet.",
+      "invalid": "Voer een serveradres in, zoals play.example.com of play.example.com:25565.",
+      "apiError": "De statusdienst is niet bereikbaar. Controleer je verbinding en probeer het opnieuw.",
+      "statusOnline": "Online",
+      "statusOffline": "Offline",
+      "eulaBlocked": "Geblokkeerd door Mojang (EULA)",
+      "playersOnline": "Spelers online",
+      "mods": {
+        "one": "{n} mod",
+        "other": "{n} mods"
+      },
+      "plugins": {
+        "one": "{n} plugin",
+        "other": "{n} plugins"
+      },
+      "share": "Deelbare link",
+      "fact": {
+        "status": "Status",
+        "address": "Adres",
+        "ip": "IP-adres",
+        "srv": "SRV-record",
+        "version": "Versie",
+        "protocol": "Protocol",
+        "players": "Spelers",
+        "software": "Software",
+        "gamemode": "Spelmodus",
+        "edition": "Editie",
+        "eula": "Let op"
+      }
+    },
+    "icon": {
+      "pageTitle": "Minecraft Servericoon Maker – server-icon.png · SGOI Tools",
+      "metaDescription": "Maak van elke afbeelding een server-icon.png van 64×64 voor je Minecraft-server, met live voorbeeld. Werkt in je browser, er wordt niets geüpload.",
+      "title": "Servericoon Converter",
+      "tagline": "Verklein en hernoem elke afbeelding tot servericoon.",
+      "upload": "Upload, sleep of plak een afbeelding",
+      "hint": "PNG, JPG, GIF, WebP, SVG… Er wordt niets geüpload.",
+      "pasted": "Geplakte afbeelding",
+      "notImage": "Dat is geen afbeelding. Probeer een PNG, JPG, GIF of WebP.",
+      "decodeError": "Je browser kan deze afbeelding niet openen.",
+      "fit": "Passen",
+      "fitCover": "Bijsnijden tot vierkant",
+      "fitContain": "Binnen passen (doorzichtige randen)",
+      "fitStretch": "Uitrekken",
+      "scaling": "Schalen",
+      "smooth": "Vloeiend (foto’s)",
+      "pixel": "Scherpe pixels (pixelart)",
+      "preview": "Voorbeeld",
+      "previewNote": "Verkleind naar 64×64 en hernoemd naar server-icon.png.",
+      "download": "Downloaden",
+      "howTo": "Zet <code>server-icon.png</code> in je servermap, naast <code>server.properties</code>, en herstart de server."
+    },
+    "jars": {
+      "pageTitle": "Minecraft Server Jars Downloaden – Paper, Fabric, Forge en meer · SGOI Tools",
+      "metaDescription": "Download Minecraft server-jars voor Paper, Purpur, Pufferfish, Vanilla, Folia, Velocity, Fabric, NeoForge, Quilt, Forge en meer, voor elke versie.",
+      "title": "Server Jars",
+      "tagline": "Download jar-bestanden van populaire serversoftware.",
+      "type": "Type",
+      "version": "Versie",
+      "download": "Downloaden",
+      "loading": "Laden…",
+      "error": "De versielijst kon niet worden geladen. Probeer het zo opnieuw.",
+      "empty": "Geen builds gevonden voor dit type.",
+      "count": {
+        "one": "{n} versie",
+        "other": "{n} versies"
+      },
+      "snapshots": "Snapshots tonen",
+      "mcVersion": "Minecraft-versie",
+      "build": "Build",
+      "java": "Java",
+      "released": "Uitgebracht",
+      "buildsOf": {
+        "one": "{name}",
+        "other": "{name} · alle {n} builds"
+      },
+      "deprecated": "Verouderd",
+      "experimental": "Experimenteel",
+      "unsupported": "niet ondersteund",
+      "zipNote": "Deze server komt als .zip waarin alles al geïnstalleerd is: pak hem uit en start de server vanuit de uitgepakte map.",
+      "source": "Buildgegevens van <a class=\"link\" href=\"https://mcjars.app\" target=\"_blank\" rel=\"noopener\">MCJars</a>. Downloads komen rechtstreeks van elk project.",
+      "groups": {
+        "popular": "Populair",
+        "recommended": "Aanbevolen",
+        "established": "Gevestigd",
+        "experimental": "Experimenteel",
+        "miscellaneous": "Overig",
+        "limbos": "Limbo-servers"
+      }
+    },
+    "motd": {
+      "pageTitle": "Minecraft MOTD Maker – Kleuren, Verlopen en Voorbeeld · SGOI Tools",
+      "metaDescription": "Maak een kleurrijke Minecraft-server-MOTD met kleurcodes, opmaak en verlopen. Live voorbeeld; kopieer voor server.properties, plugins of MiniMessage.",
+      "title": "MOTD Maker",
+      "tagline": "Ontwerp de beschrijving die spelers in hun serverlijst zien.",
+      "name": "Servernaam (alleen voorbeeld)",
+      "line1": "Regel 1",
+      "line2": "Regel 2",
+      "center": "Centreren",
+      "example": "Voorbeeld",
+      "gradient": "Kleurverloop",
+      "applyGradient": "Toepassen op selectie",
+      "gradientHint": "Selecteer eerst tekst in een regel (of niets, voor de hele regel).",
+      "hint": "Typ zelf <kbd>&amp;</kbd>-codes of klik op een kleur: <code>&amp;a</code> groen, <code>&amp;l</code> vet, <code>&amp;r</code> herstellen. Een kleur zet vet en cursief uit, dus zet die na de kleur.",
+      "fmt": {
+        "bold": "Vet",
+        "italic": "Cursief",
+        "underline": "Onderstrepen",
+        "strike": "Doorhalen",
+        "obfuscated": "Versluierd (willekeurige letters)",
+        "reset": "Herstellen"
+      },
+      "outProps": "server.properties",
+      "outPropsHint": "Vervang de regel motd= in server.properties en herstart.",
+      "outAmp": "Plugins (&-codes)",
+      "outAmpHint": "Voor MOTD-plugins, EssentialsX en de meeste configbestanden.",
+      "outMini": "MiniMessage",
+      "outMiniHint": "Voor Velocity (velocity.toml) en Paper-plugins die MiniMessage gebruiken.",
+      "hexNote": "Verlopen en eigen kleuren hebben een plugin of Velocity nodig: server.properties kent alleen de 16 standaardkleuren, dus daar worden de dichtstbijzijnde gebruikt."
+    },
+    "hub": {
+      "pageTitle": "Minecraft Servertools – Status, Iconen, Jars en MOTD · SGOI Tools",
+      "metaDescription": "Gratis Minecraft-servertools: bekijk of een server online is, maak een server-icon.png, download server-jars en ontwerp een kleurrijke MOTD. Zonder reclame.",
+      "title": "Minecraft",
+      "tagline": "Gratis tools voor je Minecraft-server: controleren, opmaken en opzetten.",
+      "replay": "Klik op de creeper om het nog eens te zien",
+      "hint": "Psst… klik op de creeper.",
+      "credit": "Geluiden © Mojang, via <a class=\"link\" href=\"https://mcasset.cloud\" target=\"_blank\" rel=\"noopener\">mcasset.cloud</a>. Geen officieel Minecraft-product; niet goedgekeurd door of verbonden met Mojang of Microsoft.",
+      "huh": "Hè?",
+      "ahh": "Aaaah!"
+    }
+  }
+}

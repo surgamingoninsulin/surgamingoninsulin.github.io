@@ -12,25 +12,43 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Build
-        env:
-          SITE: https://${{ github.repository_owner }}.github.io
-          # A repo literally named "<owner>.github.io" is a User/Org Pages site: GitHub always
-          # serves it at the domain root, never under a /<repo-name>/ sub-path (unlike a project repo).
-          BASE: ${{ github.event.repository.name == format('{0}.github.io', github.repository_owner) && '/' || format('/{0}', github.event.repository.name) }}
-        run: npm run build
+      - run: npm run build
+
+      # The file converter (./all-files-convert) is its own Vite app; build it into
+      # dist/all-files-convert/ so it is served next to the Astro site.
+      - uses: oven-sh/setup-bun@v2
+      - name: Build file converter
+        working-directory: all-files-convert
+        run: |
+          # Same base-path rule as astro.config.mjs: "<owner>.github.io" repos are served from the root.
+          repo="${GITHUB_REPOSITORY#*/}"
+          owner="${GITHUB_REPOSITORY%%/*}"
+          if [ "${repo,,}" = "${owner,,}.github.io" ]; then prefix=""; else prefix="/$repo"; fi
+          export CONVERT_BASE="$prefix/all-files-convert/"
+          echo "CONVERT_BASE=$CONVERT_BASE" >> "$GITHUB_ENV"
+          export VITE_COMMIT_SHA="$GITHUB_SHA"
+          bun install --frozen-lockfile
+          bun run build
+      # Optional: pre-computed format list so the converter skips its loading screen.
+      - name: Build file converter format cache
+        working-directory: all-files-convert
+        continue-on-error: true
+        run: bun run cache:build
+      - run: cp -r all-files-convert/dist dist/all-files-convert
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
